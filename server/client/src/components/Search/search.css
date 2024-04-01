@@ -1,0 +1,33 @@
+
+.search {
+    display: flex;
+    flex-flow: column;
+    width: 80%;
+    margin:0 auto;
+    text-align: center;
+    gap: var(--gap);
+}
+
+.result-container {
+    display: grid;
+    width: 90%;
+    margin: 1em auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+    text-align: center;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.card__icon-like {
+    position: absolute;
+    left: 95%;
+    top: 1%;
+    transform: translate(-95%, -1%);
+}
+

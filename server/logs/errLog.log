@@ -1,0 +1,242 @@
+20231210	19:31:15	ae403a6d-8640-48dd-a841-ca2d85ce7d71	ReferenceError: path is not defined	POST	/user/signup	undefined
+20231210	19:31:46	f856a751-6674-4637-abf7-6420ce52a5c9	ReferenceError: path is not defined	POST	/user/login	undefined
+20231210	19:31:50	86f5038b-fe75-4d3c-80bc-055495d19860	ReferenceError: path is not defined	GET	/user/login	undefined
+20231210	19:33:00	89b2267d-a1c6-4129-b895-60205a8f72cb	ReferenceError: path is not defined	GET	/user/login	undefined
+20231210	19:33:09	d3e3623c-432e-4694-a9e9-21fedc9a671f	ReferenceError: path is not defined	GET	/user/signup	undefined
+20231210	19:35:13	a39b4e7b-5743-4094-a323-3a832ef5db47	SyntaxError: Unexpected string in JSON at position 15	POST	/user/signup	undefined
+20231210	19:47:49	689f23ee-dd4a-48b0-a3e9-ddfc1bece329	Error: Cannot set headers after they are sent to the client	POST	/user/signup	undefined
+20231210	19:50:03	13d85e33-8065-4d9e-9449-078e4b6160b1	SyntaxError: Unexpected number in JSON at position 121	POST	/user/signup	undefined
+20231210	19:50:19	4700bc91-15ac-4321-a7e0-33a459fc370b	Error: Cannot set headers after they are sent to the client	POST	/user/signup	undefined
+20231210	19:51:08	f63148b3-b82b-4fbc-a6de-84a6dd5e7dc3	Error: Cannot set headers after they are sent to the client	POST	/user/signup	undefined
+20231210	20:07:17	36329d4e-4ee3-433f-b02c-fa350831ebc3	SyntaxError: Unexpected token , in JSON at position 103	POST	/user/signup	undefined
+20231210	20:07:37	f6105623-a158-4ba1-8b53-b9e849185373	SyntaxError: Unexpected number in JSON at position 147	POST	/user/signup	undefined
+20231211	08:05:10	1f56927e-00e4-470d-8069-deb950ded993	ReferenceError: path is not defined	POST	/user/signup/ww	undefined
+20231211	08:05:15	d620f294-d6da-4d35-8071-384541116cda	ReferenceError: path is not defined	POST	/user/signup/ww	undefined
+20231211	11:54:38	203f4dc1-0cee-4ae4-9026-064feb7ed3cc	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/user/users	undefined
+20231211	11:56:50	e0b0e8fa-543c-43b0-ba5f-984aa63ffed4	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/user/users	undefined
+20231211	11:57:41	81f460d8-3616-468b-8e93-5377c32860c5	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/user/users	undefined
+20231211	11:58:33	9e5dfb44-b88f-491c-bda1-ebd208baa2c5	Error: Cannot set headers after they are sent to the client	GET	/user/users	undefined
+20231211	11:58:46	f543d273-7dc8-4eb0-ab75-87a93698a434	Error: Cannot set headers after they are sent to the client	GET	/user/users	undefined
+20231212	08:11:56	5b73bbe7-a04e-48e7-9a26-2406bc2ae3b9	ReferenceError: password is not defined	PUT	/user/user/6575fae4ce202fc78a03e79d	undefined
+20231212	08:13:02	8923cb8e-a125-4ad5-a277-92c7f81994bd	Error: data and salt arguments required	PUT	/user/user/6575fae4ce202fc78a03e79d	undefined
+20231212	08:47:45	9a8ff03e-4ef4-4fe3-aff3-8ea70dbad4c0	ReferenceError: updatedUserData is not defined	POST	/pet/pet	undefined
+20231212	16:31:38	a141faff-e9ed-47ba-9fc7-9e3edb5b9bff	ReferenceError: updatedUserData is not defined	POST	/pet/pet	undefined
+20231212	16:33:57	a5bbc2fe-490f-4932-9154-d148a52c67a7	ReferenceError: updatedUserData is not defined	POST	/pet/pet	undefined
+20231212	17:33:11	80b9c2ed-9f9e-48d9-9f28-a9538f1ca626	TypeError: Cannot destructure property 'adoptionStatus' of '(intermediate value)' as it is null.	POST	/pet/pet/65786fcbfcc94676ddbefa40/adopt	undefined
+20231212	17:33:54	2fb78934-98fe-4d14-a0a4-1d255d37d05a	TypeError: Cannot destructure property 'adoptionStatus' of '(intermediate value)' as it is null.	POST	/pet/pet/65786fcbfcc94676ddbefa40/adopt	undefined
+20231212	19:46:56	043372a4-e355-47f5-9bce-0d0801716721	TypeError: Cannot read properties of undefined (reading 'toString')	POST	/pet/pet/65787c15f3cfb954858c051e/return	undefined
+20231213	09:45:50	13a04675-bc50-4aae-bc0a-4cbf83a8ac2f	ReferenceError: id is not defined	DELETE	/pet/pet/6578927b019e66b733d6f477/save	undefined
+20231213	09:47:39	487eb0f4-ff4f-4a83-aa1e-3c6594f5c159	ReferenceError: filter is not defined	DELETE	/pet/pet/6578927b019e66b733d6f477/save	undefined
+20231213	09:51:08	ac518bdd-b5d1-4dcc-8db4-c38d05824573	CastError: Cast to ObjectId failed for value "6575fe7e4449448afbd972d" (type string) at path "_id" for model "User"	DELETE	/pet/pet/65787c15f3cfb954858c051e/save	undefined
+20231213	11:05:26	f5a8664d-c331-4c40-a394-e4df04a1a731	CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Pet"	GET	/pet/pet/user	undefined
+20231213	11:07:36	836f68ef-4c1a-4bc4-8328-06f425aa4716	CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Pet"	GET	/pet/pet/user	undefined
+20231213	11:11:38	55c3a27c-14c8-499f-a6e6-933acf8d71ec	CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Pet"	GET	/pet/pet/user	undefined
+20231213	11:12:16	74ca9077-2e8b-4b93-9f9c-cc7c7c06646c	CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Pet"	GET	/pet/pet/user	undefined
+20231213	11:12:39	ba8efa85-4892-42c5-a6ba-89e6f6b077f1	CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Pet"	GET	/pet/pet/user	undefined
+20231213	11:13:24	450bd39a-0ad9-486f-9e29-df141363d709	CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Pet"	GET	/pet/pet/user	undefined
+20231213	11:13:26	cf532281-61e1-4781-a0b1-f0ad9f956cb8	CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Pet"	GET	/pet/pet/user	undefined
+20231213	13:33:23	f9f44e41-ed1a-482e-8663-54cda7feb759	SyntaxError: Unexpected string in JSON at position 332	POST	/pet/pet	undefined
+20231222	13:56:04	493f4409-7f0e-45d1-a3bb-7d9c8695a39d	TypeError: Assignment to constant variable.	GET	/pet/pets/?type=dog	undefined
+20231226	09:03:46	3e972a8e-6830-4ce0-84fd-3df75363c627	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	09:03:50	c2e06a67-909e-4b45-a41c-06f8528b9288	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	09:04:59	7dd79b61-4ef2-4ea4-9162-78b161fd8907	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	09:05:34	8ded6adf-73d6-40ca-87d8-75537fe8e295	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	09:05:58	0e31e404-0c39-4a48-ab2e-5a07bb72cc31	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	09:06:41	2300a377-9067-4039-9cac-9d5758210279	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	09:08:20	d5305e7e-11d9-498e-8043-e1b6a344b1c7	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	09:09:19	00ec631f-0d6b-4334-91b6-bb5153939db8	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	09:10:58	1e13e47f-3d1c-416a-ac33-e1f6fc13a9df	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=a&name=a	http://localhost:5173
+20231226	13:14:40	11e98e92-df7b-48ee-b69e-639676ad3ff0	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=	http://localhost:5173
+20231226	13:14:57	33bfc08f-1827-4b11-8b4f-88a879ca158d	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=	http://localhost:5173
+20231226	13:15:38	0afc6666-5039-4779-932c-d8ce9f426963	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=	http://localhost:5173
+20231226	13:16:24	e380ab7a-a02b-40c8-a634-17abe20d86e1	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=	http://localhost:5173
+20231226	13:16:47	0327139b-3482-4a21-8142-034f16709c8c	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:19:03	ec8e2345-e795-4ae5-84af-7bf7b11858c3	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:19:58	a350a436-d4c6-4454-8bf9-f13651c4d848	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:20:18	bec4892d-f3f7-4d90-8594-579ffd97451a	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:20:40	db7fbc4e-0478-4139-8650-8d8a85b5e58e	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:21:31	9fd71d85-3ada-46a7-ad84-cf2cd3c7484f	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:21:48	29b0b083-d78e-4a86-bf7d-f6a5ab2014f0	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:21:52	cc9675bb-1a73-4977-900f-50e2c03a7490	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:22:40	ae3e44e4-9493-4615-85ad-f1aed5b4b5c2	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:23:12	f52a1b91-a5d3-4fca-a2d4-67917fc39ad6	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:23:49	3e933d8e-fbe5-4bc0-8064-347d10655558	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:27:29	25d76f92-b600-4d63-ac0a-7cdf756e8ac0	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&weight=&name=a	http://localhost:5173
+20231226	13:30:12	506e1c5b-e5ac-4b33-b590-67441749f333	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:30:28	fa3462a2-2730-4742-a0f5-8e7f15e4f6eb	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:38:54	5f8e2564-e534-4329-a306-7f3dee7e1fbe	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:40:30	5721c1c9-d6b1-494f-9e44-0b6c2a9bd6c8	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:42:01	5277b07e-cfbb-480c-a79a-2e6bad9f15d2	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:43:10	8618551a-467c-47a6-9b78-f1b61ff59e71	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:43:36	558474ab-3595-4b1c-a65b-491a564ae0bb	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:43:51	b4f36879-1bfc-4110-879a-181d9d14d5f0	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:44:01	1225f4dd-c58c-454f-8f3c-3a16048e3aba	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:45:02	510cbc5f-e80e-467b-a5b2-03f119afeaeb	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:45:30	02106973-030c-4557-8c9e-2f704f335bf3	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:45:45	fc773f7b-c258-4d7e-8515-a5346aed751a	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:46:22	91dec9cc-b28e-4a94-8bcc-4f146594d884	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:47:38	e00105ec-02c3-4309-a658-38099fa66cbe	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:47:50	e0d20b3a-0fac-4fec-94dd-15ee44f39fbc	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:47:52	80fbf714-4b6f-4b78-81ea-d89c648cb57c	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:47:57	b27d0800-eaaf-41ae-a5ae-a827b657c813	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=2&weight=&petType=cut&name=a	http://localhost:5173
+20231226	13:48:14	c7915203-06a2-48a5-940e-8114e153290d	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&weight=&name=a	http://localhost:5173
+20231226	13:48:35	a1a32c79-1334-40dc-aa28-19293410420d	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&weight=&name=a	http://localhost:5173
+20231226	13:49:32	e40eff17-99fb-4984-9e07-a0611e66b462	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&weight=&name=a	http://localhost:5173
+20231226	13:50:30	a9655b5f-f156-4b83-80b1-3fb9bc90f560	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:51:04	4325af4b-761e-47bf-8cd7-23b61a1fb9da	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:52:16	a57f1599-6a03-40ca-88a1-3eff00b485dd	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	13:57:28	0280bcc8-6f4a-4871-91eb-e93acad50643	TypeError: req.query.values is not a function	GET	/pet/pets/?	http://localhost:5173
+20231226	14:00:50	7e7a999e-8e4b-414b-809d-a1b1f8b0033e	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	14:07:50	3e2928a5-b46a-4f1a-84b8-0efed839a466	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&petType=cut&name=a	http://localhost:5173
+20231226	14:08:12	0ab3dead-8429-45ea-b7c8-3ab221110020	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=1&weight=2	http://localhost:5173
+20231226	14:11:11	a2c49837-0dfe-45eb-a552-2092a66a8eb4	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?weight=&searchType=advance&name=moja	http://localhost:5173
+20231226	14:17:49	13f9013a-745a-4958-b753-b734b6efbf46	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&weight=3&name=	http://localhost:5173
+20231226	14:18:55	7b3f3dd0-6d7a-455d-8bbd-eb0c08c660eb	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&weight=3&name=	undefined
+20231226	14:19:09	b0966bf2-bee3-4735-a189-d77521d750cc	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=2&weight=3&name=Moja	undefined
+20231226	14:33:45	96c6f288-b6d6-461c-994c-d73e787e5bf0	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&weight=&petType=cut&name=atika1212	http://localhost:5173
+20231226	14:36:02	ce1f2300-ee4d-41ea-97b3-2c68e17d5b8d	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?height=&weight=&petType=&name=Atika&searchType=advance	http://localhost:5173
+20231226	14:37:02	ec6d2b46-7999-4f98-8de9-083ddcf1e349	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=atikakalfa08054%40gmail.com	http://localhost:5173
+20231226	15:19:13	c8a1ca19-2df4-45be-9682-96c25d3e7966	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=basic&searchTerm=Dog+n&height=&weight=&petType=&name=	http://localhost:5173
+20231226	17:13:43	4c57615b-925b-4162-9e05-42e592751253	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=moja	http://localhost:5173
+20231227	09:09:05	07fc6a8d-7d6b-4598-a48c-a9d7832c0ae2	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=f&height=&weight=&petType=&name=&searchType=basic	http://localhost:5173
+20231227	09:10:49	920c5076-548a-467d-a7d5-f236fc131344	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=s&height=&weight=&petType=&name=&searchType=basic	http://localhost:5173
+20231227	09:11:46	410a2255-7549-41f1-bcfe-a2f78e3bd2b5	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=s&height=&weight=&petType=&name=&searchType=basic	http://localhost:5173
+20231227	09:12:29	b2d01467-c5e9-4e87-9616-3dee31576887	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=s&height=&weight=&petType=&name=&searchType=basic	http://localhost:5173
+20231227	09:15:47	0d434a48-b4c7-4670-870e-0bfe66772532	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=cccccccccccc&height=&weight=&petType=&name=&searchType=basic	http://localhost:5173
+20231227	15:29:16	774330f3-220a-4576-a74c-13ba382d5012	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/65786fcbfcc94676ddbefa40/save	undefined
+20231227	15:33:42	69a28871-0539-4049-9bb5-a75160f76a81	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20231227	15:33:47	b8f977fb-440d-424e-a6ce-13b1d1b50015	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20231227	16:03:09	553dd159-db42-4f0c-b7ad-ab711e1888ff	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20231227	16:04:40	0fb00a61-1687-4b75-8227-7c4c209bc467	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/65786fcbfcc94676ddbefa40/save	undefined
+20231227	16:05:10	3b885e94-4c3b-4749-b1a6-5715cdc167f5	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20231227	16:06:47	42d09e61-b68d-4ba0-b2e9-03837bbffca2	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20231227	16:22:03	7b287443-4cef-4b85-ad6d-a0662a58cb69	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/657996d9dd5024ec897eeca9/save	http://localhost:5173
+20231227	16:22:15	c3b23305-1911-4454-adbe-cb498ed636d5	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/657996d9dd5024ec897eeca9/save	http://localhost:5173
+20231227	16:23:09	f408a6d2-419c-4da1-8d2e-767ffd15a824	ValidationError: User validation failed: email: Path `email` is required., password: Path `password` is required.	POST	/pet/pet/657997fb66b89d518c097fbf/save	http://localhost:5173
+20240101	18:02:22	daa79beb-311e-4ef0-8eab-bf45a810e8a4	Error: Cannot set headers after they are sent to the client	POST	/user/login	http://localhost:5173
+20240101	18:03:51	a207d21d-1ec9-4a92-83bc-d8b5fd7110a5	Error: Cannot set headers after they are sent to the client	POST	/user/login	http://localhost:5173
+20240101	18:04:27	b875b383-f0b7-483c-86a7-d6474e85fb6c	Error: Cannot set headers after they are sent to the client	POST	/user/login	http://localhost:5173
+20240101	18:04:28	628f0ad8-96e9-4e8a-8e1a-e3040080c65f	Error: Cannot set headers after they are sent to the client	POST	/user/login	http://localhost:5173
+20240101	18:04:52	8ebd66ef-585e-4bf9-b753-5e4cec0ac074	Error: Cannot set headers after they are sent to the client	POST	/user/login	http://localhost:5173
+20240102	17:43:04	29442530-474c-4f54-a73f-f75219139544	ReferenceError: newList is not defined	PUT	/pet/pet/657892b0019e66b733d6f479/save	http://localhost:5173
+20240102	17:47:36	0f6d68e4-d08d-422e-8ae8-5c80ce7a01ad	ReferenceError: newList is not defined	PUT	/pet/pet/65787c15f3cfb954858c051e/save	http://localhost:5173
+20240102	17:48:10	0c0c1acf-6477-4acf-aa0d-44a9492d6db7	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240102	17:53:02	a396cf06-59e2-4a3f-a275-99445d9176b2	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240102	17:53:08	e0d212b8-b1fb-4f55-97bb-dda44e0375f7	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240103	18:36:27	1f6d5ce0-2399-4c90-b3c5-b5b8407c847b	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240103	18:41:46	30e9bcc3-7f80-4f4e-a0ab-f4d80fdc0400	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240103	19:06:20	86f138c2-a021-4f2f-9af1-edc10bf8a87f	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240103	19:12:35	557ced33-9c3f-4107-8dcd-9cf0f95794f4	TypeError: Cannot read properties of null (reading 'toString')	POST	/pet/pet/65786fcbfcc94676ddbefa40/return	http://localhost:5173
+20240104	18:13:48	348a61cf-0f37-4c95-9cb6-93463e48d079	ReferenceError: newList is not defined	PUT	/pet/pet/657892b5019e66b733d6f47b/save	http://localhost:5173
+20240104	18:19:39	e1ded275-663a-463b-b797-8218ccdb4411	TypeError: Cannot read properties of null (reading 'toString')	POST	/pet/pet/657892b5019e66b733d6f47b/return	http://localhost:5173
+20240108	12:25:10	cfc099e6-4237-41dc-b9b3-518b0ce29fa9	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	GET	/user/users	http://localhost:5173
+20240108	12:25:15	371f4201-c7e6-48b6-b436-d93ed563de87	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	GET	/user/users	http://localhost:5173
+20240108	12:26:30	fb5e0401-41b4-4ee0-a544-c939f5705ad4	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	GET	/user/users	http://localhost:5173
+20240108	12:27:01	35cbed9c-4184-4f1c-80d2-e95e5f700d11	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	GET	/user/users	http://localhost:5173
+20240108	12:27:31	cfe04060-d461-4d30-a9b6-72a8ce534087	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	GET	/user/users	http://localhost:5173
+20240108	12:28:16	cd06dc2b-1df2-4e4f-a8dc-32ba17f5f0d5	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	POST	/user/login	http://localhost:5173
+20240108	12:28:19	8bc5ad0b-68b4-4d90-8c71-a78e27674228	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	POST	/user/login	http://localhost:5173
+20240108	12:29:03	e30240f4-54d2-42fe-a21d-646d55c1edd4	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	POST	/user/login	http://localhost:5173
+20240108	12:29:37	453b22df-9b2f-401c-9d9f-c668c90c3ff6	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	POST	/user/login	http://localhost:5173
+20240108	12:29:58	a7c47d01-b783-4ee9-a495-8458035e4dff	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	POST	/user/login	http://localhost:5173
+20240109	11:53:10	afaae7a2-25ce-44d3-bc62-072d00716e32	ObjectParameterError: Parameter "filter" to find() must be an object, got "6578927b019e66b733d6f477,6578927b019e66b733d6f477,657892b0019e66b733d6f479,657892b5019e66b733d6f47b,657892b5019e66b733d6f47b" (type object)	POST	/pet/pet/user	http://localhost:5173
+20240110	10:13:44	be73b104-c1e7-4133-9b25-1a59036dc86f	TypeError: Cannot read properties of undefined (reading 'length')	POST	/pet/pet/user	http://localhost:5173
+20240110	10:15:10	971e0313-5f4b-4cbe-b3cc-cdfded4d67c8	TypeError: Cannot read properties of undefined (reading 'length')	POST	/pet/pet/user	http://localhost:5173
+20240110	10:15:29	6b16539d-9cc9-479c-8f4c-78b4be346a37	TypeError: Cannot read properties of undefined (reading 'length')	POST	/pet/pet/user	http://localhost:5173
+20240117	09:09:06	aedf8c3a-1df1-40cc-af0e-7e1c9ee82039	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-00.1ttsot9.mongodb.net	POST	/user/login	http://localhost:5173
+20240124	18:56:55	689eb9f1-863f-4739-8cb5-f5be99e0082a	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	GET	/pet/pet/undefined	http://localhost:5173
+20240124	19:01:27	34d4634d-b5b9-4a3d-8cd5-71c3efd3e864	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	POST	/pet/pet/undefined/adopt	http://localhost:5173
+20240124	19:01:29	ea1da153-43ea-4b92-96da-9e266b26a73c	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	POST	/pet/pet/undefined/adopt	http://localhost:5173
+20240124	19:01:30	bfbacbb5-2f4c-4178-9ac2-e3619bcfde84	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	POST	/pet/pet/undefined/return	http://localhost:5173
+20240124	19:01:33	8cfe14bc-53f9-4e78-8e54-e1aa56bf7c24	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	GET	/pet/pet/undefined	http://localhost:5173
+20240124	19:01:34	ca809fa6-95a2-4bf9-973e-5c425ab7db42	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	GET	/pet/pet/undefined	http://localhost:5173
+20240124	19:01:35	8c8b486d-e352-4d6a-9c9a-e26ee43f8fbd	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	POST	/pet/pet/undefined/adopt	http://localhost:5173
+20240124	19:01:36	21ba07bd-431b-44dc-ab7f-58d80959ddf8	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	GET	/pet/pet/undefined	http://localhost:5173
+20240124	19:01:38	a6fe5e61-c8ed-491e-8872-876c8a3d2bab	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	GET	/pet/pet/undefined	http://localhost:5173
+20240124	19:01:40	dd55af0a-5288-43d1-afd3-0eb31ee576a5	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	POST	/pet/pet/undefined/adopt	http://localhost:5173
+20240124	19:01:40	2a40a869-417c-46d7-b248-7ff3b3091893	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	GET	/pet/pet/undefined	http://localhost:5173
+20240124	19:10:51	06452ac2-869d-402f-bb0f-b63cf426df70	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	GET	/pet/pet/undefined	http://localhost:5173
+20240128	12:03:01	e100ae61-a66a-4abb-af4b-a6d9f60af758	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/65786fcbfcc94676ddbefa40	http://localhost:5173
+20240128	12:05:00	1917eb64-d10b-401f-bfe0-b4c54c142d1a	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/65787c15f3cfb954858c051e	http://localhost:5173
+20240128	12:40:11	1c65f0f6-fc3a-40db-9ea4-b890267cd34a	TypeError: Cannot convert undefined or null to object	POST	/pet/pet	http://localhost:5173
+20240128	12:44:50	c940a887-2391-439a-abff-eb6611536cda	ValidationError: Pet validation failed: hypoallergenic: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError", owner: Cast to ObjectId failed for value "" (type string) at path "owner" because of "BSONError"	POST	/pet/pet	http://localhost:5173
+20240128	12:45:44	ce941132-99da-49e7-a488-a8a50e48c104	ValidationError: Pet validation failed: owner: Cast to ObjectId failed for value "" (type string) at path "owner" because of "BSONError"	POST	/pet/pet	http://localhost:5173
+20240128	12:46:17	13935a8b-9709-40ef-8445-e5dc46e4ec05	ValidationError: Pet validation failed: owner: Cast to ObjectId failed for value "" (type string) at path "owner" because of "BSONError"	POST	/pet/pet	http://localhost:5173
+20240128	12:47:30	c12de6e9-6987-453f-ac03-001c7001e49d	ValidationError: Pet validation failed: owner: Cast to ObjectId failed for value "" (type string) at path "owner" because of "BSONError"	POST	/pet/pet	http://localhost:5173
+20240128	12:47:36	19164a9a-4e5f-4358-a74d-0a2d08df7d46	ValidationError: Pet validation failed: owner: Cast to ObjectId failed for value "" (type string) at path "owner" because of "BSONError"	POST	/pet/pet	http://localhost:5173
+20240128	18:06:11	6e35845d-7b7d-40c0-90d3-dfbcd80bf331	ValidationError: Pet validation failed: owner: Cast to ObjectId failed for value "" (type string) at path "owner" because of "BSONError"	POST	/pet/pet	http://localhost:5173
+20240128	18:08:45	6d89a230-a914-4475-9806-36b3e63d66ee	ValidationError: Pet validation failed: owner: Cast to ObjectId failed for value "" (type string) at path "owner" because of "BSONError"	POST	/pet/pet	http://localhost:5173
+20240128	19:55:23	3b940452-110a-489f-b786-def1c8b27dcf	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=Moja&searchType=advance	http://localhost:5173
+20240128	19:56:15	07581995-3421-4afc-a4a4-9278db68184b	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=Moja	http://localhost:5173
+20240128	20:01:51	45ed92d1-0187-4f4a-845c-13e53eecadca	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=Moja&searchType=advance	http://localhost:5173
+20240128	21:07:50	259e84ec-23ab-46bc-ab01-5cd87719c182	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-00.1ttsot9.mongodb.net	GET	/pet/pets/?searchType=&searchTerm=&height=&weight=&petType=&name=	http://localhost:5173
+20240128	21:12:27	5b5aca84-fd32-4618-ba0d-c9db77a80eef	ReferenceError: newList is not defined	PUT	/pet/pet/6578927b019e66b733d6f477/save	http://localhost:5173
+20240226	18:16:04	d065dc3d-d305-46e9-afe0-829aafbddc5e	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=Moja&searchType=advance	http://localhost:5173
+20240226	18:16:56	c88c23d5-dcd0-4016-9707-3e1ea401202f	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=moja&searchType=advance	http://localhost:5173
+20240226	18:17:42	43de70de-b6a0-4081-ace0-1c6c1c7595d5	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=Moja	http://localhost:5173
+20240226	18:28:15	4a1a5b33-bc57-4021-8940-390a10121fc5	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=Moja&searchType=advance	http://localhost:5173
+20240226	18:33:25	35655d65-8a16-43f7-8c87-0c9cff3be2fb	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=Moja	http://localhost:5173
+20240327	14:22:14	e4574a2f-88ca-4589-9507-620357da05b4	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	POST	/user/login	http://localhost:5173
+20240327	14:48:16	3b71a81b-c544-4548-8242-f450f8a44ee4	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=cut&name=sss&searchType=advance	http://localhost:5173
+20240327	14:50:20	fefd7163-a63d-4acb-9570-7c287b318b1e	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=dd&searchType=advance	http://localhost:5173
+20240327	15:01:01	6c9f5c59-a070-4277-93e8-6a657d546215	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=sss&searchType=advance	http://localhost:5173
+20240327	15:02:57	7f85f0ab-6934-47b1-b825-a61256213ccf	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=ss&searchType=advance	http://localhost:5173
+20240327	15:04:31	7788e343-9546-476e-ac44-15deacb66000	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=ss&searchType=advance	http://localhost:5173
+20240327	15:05:21	fae6f9ec-4d71-45bc-9067-c3b7982b4422	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=sSSS	http://localhost:5173
+20240327	17:27:59	4ca4a03b-b72b-422c-a8fa-7da6e72e3ae1	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=eeeee	http://localhost:5173
+20240328	08:14:43	d28d440f-327c-4dd2-b891-340b5e6e5717	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=ssssssssss	http://localhost:5173
+20240328	08:30:32	d5b15916-3753-47ae-9f72-80f1f7f0e994	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=ssss	http://localhost:5173
+20240328	08:32:00	1750eb26-4d14-49ed-bd03-cf724d770d61	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=sss&searchType=advance	http://localhost:5173
+20240328	08:33:03	5ea2cc48-1b66-44b0-8da7-153fddf38ef9	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=sss&searchType=advance	http://localhost:5173
+20240328	08:53:37	ee30e5f2-58ad-4765-aace-f181d6a7b40e	TypeError: Cannot convert undefined or null to object	PUT	/pet/pet/65786fcbfcc94676ddbefa40	http://localhost:5173
+20240328	08:53:59	1d789c54-59d4-4ffd-ad1a-a3e30919df5a	TypeError: Cannot convert undefined or null to object	PUT	/pet/pet/65786fcbfcc94676ddbefa40	http://localhost:5173
+20240328	20:32:13	293164f2-925b-4b27-9e64-6dc62533fff6	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	PUT	/pet/pet/undefined	http://localhost:5173
+20240328	20:32:30	b41619b5-b5ba-4d45-a0b9-5d11d74833e4	TypeError: Cannot convert undefined or null to object	PUT	/pet/pet/undefined	http://localhost:5173
+20240328	20:32:44	273b0939-a9fd-4a76-9966-ca13f32273f3	TypeError: Cannot convert undefined or null to object	PUT	/pet/pet/undefined	http://localhost:5173
+20240328	20:36:01	b52b6fd6-231a-4186-87ba-6cb662b6ef8c	CastError: Cast to Boolean failed for value "sssss" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/65786fcbfcc94676ddbefa40	http://localhost:5173
+20240328	20:36:02	dc4b8842-281d-40f0-ae28-1a1895dce23e	CastError: Cast to Boolean failed for value "sssss" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/65786fcbfcc94676ddbefa40	http://localhost:5173
+20240328	20:39:54	46abd01c-0af9-425f-9631-0a461ba26ed8	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/65786fcbfcc94676ddbefa40	http://localhost:5173
+20240328	20:40:21	239d7473-edcc-4f79-9505-66b3efa5e20a	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/65786fcbfcc94676ddbefa40	http://localhost:5173
+20240328	20:43:26	f706b5be-08ab-4264-9ee7-a4f3ecb03f43	CastError: Cast to Boolean failed for value "ss" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/65787c15f3cfb954858c051e	http://localhost:5173
+20240331	20:22:18	974044ba-490c-45e9-9800-dd815964638a	ReferenceError: email is not defined	POST	/user/login	http://localhost:5173
+20240401	00:56:11	176dff7d-5c9a-441c-8730-1da61bb84183	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240401	00:56:18	d0f504ad-dea4-47b5-a416-82c979af1093	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240401	00:56:25	2209d9b6-bba2-42d2-8479-fe89d7e150d6	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240401	00:56:32	17ac3033-487b-4d68-8ef5-895dd577fd78	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240401	00:56:40	c7e49473-995c-4032-9450-abdb608ba6e1	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240401	00:56:47	29db85f9-0bac-4f4b-b8b7-54c752f946b4	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240401	01:15:47	aa27fb2a-25d9-4368-8c70-c8f58bdac85c	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:19:25	653df316-9d91-4d43-885c-c1f5d9034c72	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:19:47	5819b47e-0f5c-4d1b-a2ab-445a112eb5c6	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:20:37	8a871676-b2d0-48f8-81d0-b87f2d117649	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:20:43	dd711526-b40a-4dc5-a925-f29da51fa599	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:20:43	559be728-7544-4b11-8f73-81ec63d23d3e	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:20:44	3520330d-3afd-42cd-b7f3-163d9c09d96d	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:20:44	00841364-b3ff-43a7-9ae1-839faab9ff80	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:21:12	87625259-170a-45e5-8551-eda6bdcf4d7b	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:21:47	8956e1bb-dd4c-4c9f-8890-39910fdf0e5c	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:22:01	cc3325f4-aee3-47e3-82dc-4f403ded6176	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:22:07	6381d9b7-e9ee-4c43-b4b4-af908c541be9	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:22:21	58a5974e-e873-48ab-aa5a-59f2ab7acf93	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:24:13	f2cdea1f-6634-4ab6-8bf1-a5dfc804c848	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:24:37	0ee685f4-d743-4787-bcd9-2256852d97b9	MulterError: Unexpected field	POST	/pet/pet	http://localhost:5173
+20240401	01:30:29	8dcf181d-f378-46b9-bf61-14a5726574d9	Error: Cannot set headers after they are sent to the client	POST	/pet/pet/65786fcbfcc94676ddbefa40/adopt	http://localhost:5173
+20240401	07:32:12	d7817a42-c3a4-4ea6-9e14-6ba71febc353	Error: Cannot set headers after they are sent to the client	POST	/pet/pet/65787c15f3cfb954858c051e/adopt	http://localhost:5173
+20240401	07:32:18	bad4e9b8-ebea-46d2-a276-04df362f5ef6	Error: Cannot set headers after they are sent to the client	POST	/pet/pet/65787c15f3cfb954858c051e/adopt	http://localhost:5173
+20240401	07:35:24	b8fd4bdd-67dc-4b28-b219-700e5ca3ed59	Error: Cannot set headers after they are sent to the client	POST	/pet/pet/65786fcbfcc94676ddbefa40/adopt	http://localhost:5173
+20240401	08:14:28	562ec669-7bbe-4c83-8366-d587c3050e08	Error: Cannot set headers after they are sent to the client	POST	/pet/pet/65786fcbfcc94676ddbefa40/adopt	http://localhost:5173
+20240401	08:27:40	199b3fdb-be33-4e6e-a373-9eae7f4d8a7c	Error: Cannot set headers after they are sent to the client	POST	/pet/pet/65786fcbfcc94676ddbefa40/adopt	http://localhost:5173
+20240401	08:32:54	3a53bde1-9f9a-4de4-97a4-601538da299d	Error: Cannot set headers after they are sent to the client	POST	/pet/pet/65786fcbfcc94676ddbefa40/adopt	http://localhost:5173
+20240401	08:33:23	4f75a6f9-3c61-404a-a5c2-0875e5ff23a9	Error: Cannot set headers after they are sent to the client	POST	/pet/pet/65786fcbfcc94676ddbefa40/adopt	http://localhost:5173

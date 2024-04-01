@@ -1,0 +1,50 @@
+
+.menuModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    width: fit-content;
+    text-align: left;
+    padding: 0.6em 0.6em 0.6em 1em;
+    border-radius: 6%;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.active {
+    display: block !important; 
+  }
+
+  .navbar__links a {
+    color: rgb(0, 0, 0); 
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: opacity 150ms ease-in-out;
+  }
+
+  .card {
+    max-width: 200px;
+    min-height: 250px;
+    box-shadow: var(--base-shadow-font);
+    border-radius: var(--radius);
+    
+  }
+
+  .image {
+    border-radius: (--base-shadow-font);
+    border-radius: var(--radius);
+    max-width: 100%;
+    height: auto;
+  }
+
+  .icon {
+    font-size: var(--font-size-icon);
+    cursor: pointer;
+  }
+
+  .d-none {
+    display: none;
+  }
+
+  

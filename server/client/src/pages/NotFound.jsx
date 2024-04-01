@@ -1,0 +1,17 @@
+// Example NotFound component with console log
+import React, { useEffect } from 'react';
+
+function NotFound() {
+  console.log('Rendering NotFound component');
+
+ 
+  
+  return (
+    <div>
+      <h2>404 - Not Found</h2>
+      <p>The requested page does not exist.</p>
+    </div>
+  );
+}
+
+export default NotFound;

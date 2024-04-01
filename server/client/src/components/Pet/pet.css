@@ -1,0 +1,16 @@
+.card {
+    position: relative;
+    padding: var(--base-spacing);
+    text-align: center;
+}
+
+.card span {
+font-weight: 600;
+}
+
+.card__icon-like {
+    position: absolute;
+    left: 95%;
+    top: 1%;
+    transform: translate(-95%, -1%);
+}

@@ -1,0 +1,57 @@
+/* || GENERAL STYLES */
+
+:root {
+  --background: rgb(239, 238, 241);
+  --navbarColor: rgb(101, 4, 181);
+  --font-family: "Work Sans", sans-serif;
+  --font-size-icon: 2em;
+  --base-spacing-left-right: 0 1em;
+  --base-spacing-top-bottom: 1em 0;
+  --base-spacing: 1em;
+  --base-spacing-top: 1em;
+  --base-spacing-bottom: 1em;
+  --base-color: #fff;
+  --border-radius-image-card: 2.5em;
+  --gap: 0.5em;
+  --position-L-R-space: 0.8em;
+  --base-shadow-font: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --radius: 20px;
+}
+body {
+  background-color: var(--background);
+  font-family: var(--font-family);
+  font-weight: 400;
+}
+* {
+  list-style: none;
+}
+
+/* || HEADER  */
+
+header {
+  text-align: center;
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  width: 100%;
+  padding: 0.5em var(--position-L-R-space);
+  background-color: var(--navbarColor);
+  box-shadow: var(--base-shadow-font);
+}
+
+/* || HEADER END */
+
+/* || CONTENT  */
+
+/* || CONTENT END */
+
+/* || FOOTER  */
+
+/* || FOOTER END */
+
+
+img {
+  object-fit: cover;
+}

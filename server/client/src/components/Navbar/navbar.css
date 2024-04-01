@@ -1,0 +1,36 @@
+@import '../../App.css';
+
+.Header__menu {
+  position: absolute;
+  top: 110%;
+  left: var(--position-L-R-space);
+  display: none; 
+}
+
+.header__icon-list {
+  font-size: var(--font-size-icon);
+  color: #fff;
+}
+
+.header__icon-list:hover {
+  cursor: pointer;
+}
+
+.user-image-modal {
+  position: absolute;
+  top: 110%;
+  right: var(--position-L-R-space);
+  display: none;
+}
+
+.header__user-image {
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden; 
+}
+
+.header__user-image img {
+  width: 50px; 
+  height: 50px; 
+  object-fit: cover;
+}
