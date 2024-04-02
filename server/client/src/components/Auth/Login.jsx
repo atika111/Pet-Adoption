@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     try {
       const {data} = await login(email, password);
-      console.log('userData: ', data.userId);
+      console.log('userData: ', data);
       if (!data) {
         setError("Invalid email or password");
         return;

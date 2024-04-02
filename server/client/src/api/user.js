@@ -17,7 +17,7 @@ const signup = async (newUser) => {
   } catch (error) {
     console.log("error: ", error);
     if (error.response && error.response.data) {
-      throw new Error(error.response.data);
+      throw new Error(error.response.data?.error);
     } else {
       throw new Error("An error occurred while processing your request.");
     }
@@ -35,6 +35,7 @@ const login = async (email, password) => {
     console.log('data: ', data);
     return data;
   } catch (error) {
+    console.log("Hiii");
     throw new Error("An error occurred during login");
   }
 };

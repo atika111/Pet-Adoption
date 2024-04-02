@@ -84,7 +84,7 @@ async function login(req, res) {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      admin: user.isAdmin,
+      isAdmin: user.isAdmin,
       picture: user.picture,
     });
   } catch (error) {
@@ -125,6 +125,7 @@ const updateUser = asyncHandler(async (req, res) => {
   const userId = req.params.id;
   const updatedUserData = req.body;
 
+  console.log('Object.keys(updatedUserData): ', Object.keys(updatedUserData));
   if (!Object.keys(updatedUserData).length > 0) {
     return res.status(400).json({ message: "No data to be updated" });
   }

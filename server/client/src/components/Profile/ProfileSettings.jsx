@@ -35,8 +35,8 @@ function ProfileSettings() {
     const requestData = {};
 
     formData.forEach((value, key) => {
-      if(value !== "" ) {
-        console.log('value, key: ', value, key);
+      if (value !== "" && key === "avatarImage" && value !== "") {
+        console.log("value, key: ", value, key);
         requestData[key] = value;
       }
     });
@@ -44,7 +44,9 @@ function ProfileSettings() {
     try {
       dispatch({ type: "SET_IS_ERROR", isError: false });
       dispatch({ type: "IS_LOADING", isLoading: true });
-console.log(user.userId);
+      dispatch({ type: "SET_ERROR", error:  error});
+
+      console.log(user.userId);
       const res = await axios.put(
         `${import.meta.env.VITE_SERVER_URL}/user/user/${user.userId}`,
         requestData
@@ -53,11 +55,10 @@ console.log(user.userId);
 
       console.log("data: ", res.data);
     } catch (error) {
+      console.log('error: ', error);
       dispatch({ type: "SET_IS_ERROR", isError: true });
-      console.log("error: ", error);
-      console.log("error.response.data: ", error.response.data);
-      console.log("error.response.status: ", error.response.status);
-      console.log("error.response.headers: ", error.response.headers);
+      dispatch({ type: "SET_ERROR", error:  error?.response?.data});
+
     } finally {
       dispatch({ type: "SET_LOADING", isLoading: false });
       console.log(state.successMessage);

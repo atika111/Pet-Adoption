@@ -16,7 +16,8 @@ import { useUser } from "./context/UserContext";
 import EditPet from "./components/Pet/editPet";
 
 function App() {
-  const { isLogin } = useUser();
+  const { isLogin, user} = useUser();
+  console.log('user: ', user?.isAdmin);
   return (
     <>
       <Routes>
@@ -25,7 +26,8 @@ function App() {
             <>
               <Route index path="/" element={<HomeLoggedIn />} />
               <Route path="/profile" element={<ProfileSetting />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              
+              {/* {user?.isAdmin ? <Route path="/dashboard" element={<Dashboard />} /> : null} */}
               <Route path="/search" element={<SearchBar />} />
               <Route path="/myPets" element={<MyPetsPage />} />
               <Route path="/addPet" element={<AddPet />} />
