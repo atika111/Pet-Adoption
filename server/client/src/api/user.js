@@ -29,8 +29,7 @@ const login = async (email, password) => {
   try {
     const data  = await api.post(`${serverUrl}/user/login`, {
       email,
-      password,
-      // withCredentials: true 
+      password, 
     });
     console.log('data: ', data);
     return data;
@@ -40,7 +39,15 @@ const login = async (email, password) => {
   }
 };
 
-
+const logout = async () => {
+  try {
+    const res = await api(`${serverUrl}/user/logout`)
+    console.log('res: ', res);
+  } catch (error) {
+    console.log('error: ', error);
+    
+  }
+}
 
 const getAllUsers = async () => {
   try {
@@ -63,8 +70,31 @@ const updateUser = async () => {
   const a = await api();
 };
 
-const deleteUser = async () => {
-  const a = await api();
+const deleteUser = async (userId) => {
+  try {
+  const data = await api.delete(`${serverUrl}/user/user/${userId}`, {
+    withCredentials: true
+  });
+  console.log('data: ', data);
+    // return res
+  } catch (error) {
+    console.log('error: ', error);
+    
+  }
 };
 
-export { signup, login, getAllUsers, getUserById, updateUser, deleteUser };
+const fetchUser = async() => {
+  console.log("Hi i am at the fetch User");
+try {
+  const {data}  = await api.get(`${serverUrl}/user/current-user`,{
+    withCredentials: true
+  })
+
+  return data
+} catch (error) {
+  throw new Error(error.response.data.message)
+  
+}
+}
+
+export { signup, login, getAllUsers, getUserById, updateUser, deleteUser , fetchUser , logout};

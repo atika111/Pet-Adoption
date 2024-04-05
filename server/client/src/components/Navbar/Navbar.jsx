@@ -6,15 +6,17 @@ import "../Navbar/navbar.css";
 import { useUser } from "../../context/UserContext";
 import Login from "../Auth/Login";
 import Modal from "../Auth/Modal";
+import { logout } from "../../api/user";
+import Cookies from "js-cookie";
 
 function Navbar() {
   const [isActive, setIsActive] = useState({
     image: false,
     menu: false,
   });
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const { isLogin, setIsLogin, user} = useUser();
+  const { isLogin, setIsLogin, user, setIsClick,  isClick} = useUser();
 
   const toggleIsActive = (e) => {
     const stateObj = checkEventModal(e);
@@ -61,13 +63,21 @@ function Navbar() {
     }));
   };
 
-  const handleLogoutUser = () => {
-    setIsLogin(false)
-  }
+  const handleLogoutUser = async () => {
+    try {
+      const res = await logout();
+      Cookies.remove("token")
+      Cookies.remove("usersPets")
+      Cookies.remove("user")
+    } catch (error) {
+      console.log("error: ", error);
+    }
+    setIsLogin(false);
+  };
 
   const handleOpenAccountModal = () => {
-    setIsOpenModal(true)
-  }
+    setIsOpenModal(true);
+  };
 
   return (
     <div>
@@ -94,14 +104,18 @@ function Navbar() {
 
               {isLogin && (
                 <>
-                  <li id="menu" onClick={(e) => removeActive(e)}>
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
+                  {user?.isAdmin && (
+                    <>
+                      <li id="menu" onClick={(e) => removeActive(e)}>
+                        <Link to="/dashboard">Dashboard</Link>
+                      </li>
+                      <li id="menu" onClick={(e) => removeActive(e)}>
+                        <Link to="/addPet">Add pet</Link>
+                      </li>
+                    </>
+                  )}
                   <li id="menu" onClick={(e) => removeActive(e)}>
                     <Link to="/myPets">My pets</Link>
-                  </li>
-                  <li id="menu" onClick={(e) => removeActive(e)}>
-                    <Link to="/addPet">Add pet</Link>
                   </li>
                 </>
               )}
@@ -118,7 +132,7 @@ function Navbar() {
               alt=""
               onClick={(e) => toggleIsActive(e)}
             >
-              <img src={user?.picture} alt="User"/>
+              <img src={user?.picture} alt="User" />
             </div>
 
             <ul
@@ -130,15 +144,16 @@ function Navbar() {
                 <Link to="/profile">Profile</Link>
               </li>
               <li id="image" onClick={(e) => removeActive(e)}>
-                <Link onClick={handleLogoutUser} to="/">Logout</Link>
+                <Link onClick={handleLogoutUser} to="/">
+                  Logout
+                </Link>
               </li>
-             
             </ul>
           </>
         ) : (
           <>
-          <button onClick={handleOpenAccountModal}>Login</button>
-          {isOpenModal && <Modal />}
+            <button onClick={handleOpenAccountModal}>Login</button>
+            {isOpenModal && <Modal />}
           </>
         )}
       </header>

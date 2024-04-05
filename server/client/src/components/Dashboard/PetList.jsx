@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PetModal from "./petModal";
 
-export default function PetList({ pets }) {
+function PetList({ pets }) {
   if (!Array.isArray(pets)) return;
 
   const [petId, setPetId] = useState("");
@@ -32,8 +32,14 @@ export default function PetList({ pets }) {
               ))}
           </ul>
         </div>
-        {isModalOpen && <PetModal data={{...{pets, petId,  isModalOpen, setIsModalOpen}}} />}
+        {isModalOpen && (
+          <PetModal
+            data={{ ...{ pets, petId, isModalOpen, setIsModalOpen } }}
+          />
+        )}
       </div>
     </div>
   );
 }
+
+export default PetList

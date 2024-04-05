@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {
   adoptOrFosterPet,
   deleteSavedPet,
+  getPetsByUserId,
   returnPet,
   savePet,
 } from "../../api/pet";
@@ -10,6 +11,7 @@ import style from "../../utility.module.css";
 import "./pet.css";
 import { useUser } from "../../context/UserContext";
 import { usePet } from "../../context/PetContext";
+import Cookies from "js-cookie";
 
 function PetDetails() {
   const [adoptionStatus, setAdoptionStatus] = useState("");
@@ -17,91 +19,83 @@ function PetDetails() {
 
   const { petId } = useParams();
 
-  const {petDetail, fetchPetData} = usePet()
-  const { userObj, isLogin } = useUser();
-
-  const checkStatusUsersPetsOwned = () => {
-    let adoptionStatus;
-
-    switch (petDetail.adoptionStatus) {
-      case "available":
-        adoptionStatus = "available";
-        break;
-      case "foster":
-        adoptionStatus = "adopt";
-        break;
-      case "adopt":
-        adoptionStatus = "foster";
-        break;
-
-      default:
-        adoptionStatus =
-          userObj && petDetail.owner === userObj.userId ? "return" : "unknown";
-        break;
-    }
-    console.log("adoptionStatus: ", adoptionStatus);
-    return adoptionStatus;
-  };
+  const { petDetail, fetchPetData, setPets, setPetDetail } = usePet();
+  const { user, isLogin } = useUser();
 
   const checkIfSavedPet = () => {
-    let isSaved = userObj.savedPets?.includes(petId);
-
-    setIsSaved(isSaved);
+    const usersPets = Cookies.get("usersPets");
+    if (usersPets) {
+      const {savedPets} = JSON.parse(usersPets);
+      console.log('parsedSavedPets: ', savedPets);
+      const isSaved = savedPets.some(
+        (savedPet) => savedPet._id === petId
+      );
+      setIsSaved(isSaved);
+    } else {
+      setIsSaved(false);
+    }
   };
 
   const handleSavePets = async () => {
-    const savedPet = await savePet(userObj.userId, petId);
+    const savedPet = await savePet(user.userId, petId);
+    const pets = await getPetsByUserId(user.userId);
+    setPets(pets);
+    const serializedUserPets = JSON.stringify(pets);
+    Cookies.set("usersPets", serializedUserPets);
     setIsSaved(true);
   };
 
   const handleUnsave = async () => {
-    const unSavedPet = await deleteSavedPet(userObj.userId, petId);
+    const unSavedPet = await deleteSavedPet(user.userId, petId);
+    const pets = await getPetsByUserId(user.userId);
+    setPets(pets);
+    const serializedUserPets = JSON.stringify(pets);
+    Cookies.set("usersPets", serializedUserPets);
     setIsSaved(false);
-    // console.log("unSavedPet: ", unSavedPet);
   };
 
   const handleReturnPet = async () => {
-    const { pet } = await returnPet(userObj.userId, petId);
-
+    const { pet } = await returnPet(user.userId, petId);
     setAdoptionStatus(pet.adoptionStatus);
+    setPetDetail(pet);
   };
-
 
   const handleAdoptOrFosterPet = async (e) => {
     const status = e.target.id;
 
-    console.log('userObj.userId: ', userObj.userId);
     const adoptionData = {
-      userId: userObj.userId,
+      userId: user.userId,
       petId,
       adoptionStatus: status,
+      currentAdoptionStatus: petDetail.status,
+      petOwnerId: petDetail.owner,
     };
-    const fosterOrAdoptPet = await adoptOrFosterPet(adoptionData);
 
-    console.log("fosterOrAdoptPet?.status: ", fosterOrAdoptPet?.status);
-    setAdoptionStatus(fosterOrAdoptPet?.status);
-
-    if (fosterOrAdoptPet?.status === adoptionStatus) {
-    } else {
-      console.log("Same..............");
+    try {
+      const updatedPet = await adoptOrFosterPet(adoptionData);
+      console.log(updatedPet.pet);
+      // setAdoptionStatus(updatedPet.pet.status);
+      setPetDetail(updatedPet.pet);
+    } catch (error) {
+      console.log("error: ", error);
     }
   };
 
   useEffect(() => {
-    //   fetch pet data
-    fetchPetData(petId);
-    setAdoptionStatus(petDetail.adoptionStatus);
-  }, [userObj, petId]);
+    const fetchData = async () => {
+      await fetchPetData(petId);
+    };
+
+    if (user && petId) {
+      fetchData();
+    }
+  }, [user, petId]);
 
   useEffect(() => {
     if (isLogin) {
-      const updatedAdoptionStatus = checkStatusUsersPetsOwned();
-      setAdoptionStatus(updatedAdoptionStatus);
       checkIfSavedPet();
     }
-  }, [petDetail]);
-
-  useEffect(() => {}, [adoptionStatus]);
+  }, [isLogin, petId]);
 
   return (
     // display user data
@@ -118,7 +112,7 @@ function PetDetails() {
             <h1>{petDetail?.name}</h1>
             <h2>About</h2>
             <p>
-              <span>Adoption status:</span> {adoptionStatus}
+              <span>Adoption status:</span> {petDetail.adoptionStatus}
             </p>
             <p>
               <span>Type:</span> {petDetail?.type}
@@ -151,7 +145,7 @@ function PetDetails() {
 
       {isLogin && (
         <>
-          {(adoptionStatus === "available" && (
+          {(petDetail.adoptionStatus === "available" && (
             <>
               <button id="foster" onClick={(e) => handleAdoptOrFosterPet(e)}>
                 Foster
@@ -161,23 +155,25 @@ function PetDetails() {
               </button>
             </>
           )) ||
-            (adoptionStatus !== "adopt" && (
+            (petDetail.adoptionStatus !== "adopt" && (
               <>
                 <button id="adopt" onClick={(e) => handleAdoptOrFosterPet(e)}>
                   Adopt
                 </button>
-                <button onClick={handleReturnPet}>Return</button>
+                {petDetail.owner === user.userId && (
+                  <button onClick={handleReturnPet}>Return</button>
+                )}
               </>
             )) ||
-            (adoptionStatus !== "foster" && (
-              <>
-                {/* <button id="foster" onClick={(e) => handleAdoptOrFosterPet(e)}>
-                  Foster
-                </button> */}
-                <button onClick={handleReturnPet}>Return</button>
-              </>
-            )) ||
-            (adoptionStatus === "unknown" && (
+            (petDetail.adoptionStatus !== "foster" &&
+              petDetail.adoptionStatus !== "available" && (
+                <>
+                  {petDetail.owner === user.userId && (
+                    <button onClick={handleReturnPet}>Return</button>
+                  )}
+                </>
+              )) ||
+            (petDetail.adoptionStatus === "unknown" && (
               <p>There is a problem with the card status</p>
             ))}
 

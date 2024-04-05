@@ -1,4 +1,5 @@
 import axios from "axios";
+import utilities from "../utilitiesClient";
 
 const serverUrl = import.meta.env.VITE_SERVER_URL;
 
@@ -20,9 +21,9 @@ const addPet = async (newPet) => {
 const getPetById = async (petId) => {
   try {
     const { data } = await api.get(`${serverUrl}/pet/pet/${petId}`);
-    console.log("Hi from API: ", data);
     return data;
   } catch (error) {
+    console.log('error: ', error);
     console.log("error: ", error?.response?.data?.message);
   }
 };
@@ -84,14 +85,14 @@ const returnPet = async (userId, petId) => {
     console.log('data: ', data);
     return data
   } catch (error) {
+    throw new Error(error.response.data)
     console.log('error: ', error);
     
   }
 };
 
 const savePet = async (userId, petId) => {
-  console.log("petId: PARAMS ", petId);
-  console.log("userId in the BODY: ", userId);
+
   try {
     const {data} = await api.post(`${serverUrl}/pet/pet/${petId}/save`, {
       userId: userId,
@@ -119,6 +120,7 @@ const getPetsByUserId = async (userId) => {
   console.log('userId: ', userId);
   try {
     const {data} = await api.post(`${serverUrl}/pet/pet/user`, {userId})
+    console.log('data: ', data);
     return data
   } catch (error) {
     console.log('error: ', error);

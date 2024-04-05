@@ -5,8 +5,9 @@ import {
   useEffect,
   useReducer,
 } from "react";
-import { getAllUsers, getUserById } from "../api/user";
+import { fetchUser, getAllUsers, getUserById, login } from "../api/user";
 import { initialState, userReducer } from "../Reducers/userReducer";
+import utilities from "../utilitiesClient";
 
 const UserContext = createContext();
 
@@ -20,12 +21,24 @@ function UserProvider({ children }) {
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
-  const defaultImage = "https://res.cloudinary.com/dwiiz8ilo/image/upload/v1711952587/Screenshot_2024-04-01_092244_qcmxqx.png"
+  const defaultImage =
+    "https://res.cloudinary.com/dwiiz8ilo/image/upload/v1711952587/Screenshot_2024-04-01_092244_qcmxqx.png";
 
   const fetchUsersData = async () => {
     const users = await getAllUsers();
 
     setUsers(users);
+  };
+
+  const fetchCurrentUser = async () => {
+    try {
+      const user = await fetchUser();      
+      utilities.setCookie("user", user)
+      setUser(user)
+      setIsLogin(true)
+    } catch (error) {
+      console.log("error: ", error.message);
+    }
   };
 
   return (
@@ -45,6 +58,8 @@ function UserProvider({ children }) {
         state,
         dispatch,
         defaultImage,
+        fetchCurrentUser,
+      
       }}
     >
       {children}

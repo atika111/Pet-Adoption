@@ -5,7 +5,6 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
 
 const signup = asyncHandler(async (req, res) => {
-  console.log("req.body: ", req.body);
   const userImageFromUpload = req?.file?.path;
   const defaultImage = req.body.avatarImage;
   const {
@@ -61,23 +60,18 @@ const signup = asyncHandler(async (req, res) => {
 });
 
 async function login(req, res) {
-  console.log("login: ");
   const userId = req.body.userId.valueOf();
   try {
     const user = await User.findById(userId);
-    console.log("user: ", user);
     if (!user) {
-      console.log("USER!: ");
       return res.status(404).json({ error: "User not found" });
     }
+  
+    console.log('userId: ', userId);
+    const token = jwt.sign({userId}, process.env.ACCESS_TOKEN_SECRET);
 
-    const userData = {
-      nickname: user.nickname,
-      userId: userId,
-    };
-    const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET);
-    res.cookie("token", token, { httpOnly: true });
-    console.log("HI FROM RES");
+    res.cookie("token", token, { httpOnly: false});
+
     res.status(200).send({
       userId: user._id,
       nickname: user.nickname,
@@ -86,12 +80,18 @@ async function login(req, res) {
       email: user.email,
       isAdmin: user.isAdmin,
       picture: user.picture,
+      token: token
     });
   } catch (error) {
     console.log("error: ", error);
     console.error("Error finding user by ID:", error);
     res.status(500).json({ error: "Internal server error" });
   }
+}
+
+function logout(req, res) {
+  res.clearCookie("token");
+  res.send("Cookie has been deleted successfully");
 }
 
 const getAllUsers = asyncHandler(async (req, res) => {
@@ -121,11 +121,9 @@ const getUserById = asyncHandler(async (req, res) => {
 });
 
 const updateUser = asyncHandler(async (req, res) => {
-  console.log("updateUser: ");
   const userId = req.params.id;
   const updatedUserData = req.body;
 
-  console.log('Object.keys(updatedUserData): ', Object.keys(updatedUserData));
   if (!Object.keys(updatedUserData).length > 0) {
     return res.status(400).json({ message: "No data to be updated" });
   }
@@ -136,11 +134,9 @@ const updateUser = asyncHandler(async (req, res) => {
       updatedUserData.password = hashedPassword;
     }
 
-    await User.findByIdAndUpdate(userId, updatedUserData);
-    res.status(200).json({ message: "User updated successfully" });
-  } catch (error) {
-    console.log("error: ", error);
-  }
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, { new: true });
+    res.status(200).json({ message: "User updated successfully",  updatedUser});
+  } catch (error) {}
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
@@ -152,16 +148,44 @@ const deleteUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Could not delete user" });
   }
 
-  res.status(200).json({ message: "User deleted successfully" });
+  res.status(200).json({ message: "User deleted successfully", });
 });
+
+async function getUserByToken(req, res) {
+  console.log("getUserByToken: ");
+  const { userId } = req;
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(401).json({ message: "User not found" });
+    }
+
+    const userData = {
+      nickname: user.nickname,
+      firstName: user.firstName,
+      userId: user._id,
+      email: user.email,
+      admin: user.isAdmin,
+      picture: user.picture,
+    };
+
+    return res.send(userData);
+  } catch (error) {
+    console.log("error: ", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
 
 module.exports = {
   signup,
   login,
+  logout,
   getAllUsers,
   getUserById,
   updateUser,
   deleteUser,
+  getUserByToken,
 };
 
 //TODO: Protected to logged-in users

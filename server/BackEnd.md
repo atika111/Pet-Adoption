@@ -90,3 +90,7 @@ Get User By ID API:
 Route: /user/:id/full [GET]
 Allow fetching a user based on the user's ID.
 Return all user details (aside from password) and the user's pets they own.
+
+
+
+THINGS TO LEARN: "Caching and batching"

@@ -1,15 +1,30 @@
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
 const express = require("express");
-const path = require('path')
+const path = require("path");
 const { logger } = require("./middlewares/logger");
 const { logEvents } = require("./middlewares/logger");
 const errorHandler = require("./middlewares/errorHandler");
 require("dotenv").config();
 const connectDB = require("./config/dbConn");
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = ["http://localhost:5173"];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
 const app = express();
 app.use(logger);
-app.use(cors());
+app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(express.json());
 
 const petRoutes = require("./routes/petRoutes");

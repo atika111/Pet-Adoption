@@ -5,17 +5,20 @@ import style from "../../utility.module.css";
 import { useNavigate } from "react-router-dom";
 import { savePet } from "../../api/pet";
 import { useUser } from "../../context/UserContext";
+import Cookies from "js-cookie";
 
 function SearchResult({ searchResult }) {
   // user id form Context
-  const { user} = useUser()
+  // const { user} = useUser()
+
+  const user = JSON.parse(Cookies.get("user"));
 
   const navigate = useNavigate()
 
-
   const handleSavePets = async(e, petId) => {
+    console.log(user.userId, petId);
     e.stopPropagation();
-    const savedPet = await savePet(user._id, petId)  
+    const savedPet = await savePet(user.userId, petId)  
     console.log('savedPet: ', savedPet);
   };
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getAllPets, getPetById } from "../api/pet";
+import { getAllPets, getPetById, getPetsByUserId } from "../api/pet";
 
 const petContext = createContext();
 
@@ -8,21 +8,41 @@ function PetProvider({ children }) {
   const [pets, setPets] = useState([]);
 
   const fetchPetData = async (petId) => {
-    const data = await getPetById(petId);
+    try {
+      const data = await getPetById(petId);
     setPetDetail(data);
+    } catch (error) {
+      console.log('error: ', error);
+      
+    }
   };
 
   const fetchPetsData = async () => {
     const pets = await getAllPets();
+    console.log('pets: ', pets);
     setPets(pets);
   };
+
+  const fetchPetsById = async (userId) => {
+try {
+ const data = await getPetsByUserId(userId)
+ console.log('data: ', data);
+ setPets(data)
+} catch (error) {
+  console.log('error: ', error);
+  
+}
+  } 
   return (
     <petContext.Provider
       value={{
         petDetail,
         fetchPetData,
         fetchPetsData,
+        fetchPetsById,
         pets,
+        setPets,
+        setPetDetail,
       }}
     >
       {children}

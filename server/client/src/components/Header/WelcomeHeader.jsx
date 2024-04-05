@@ -4,7 +4,7 @@ import utilities from "../../utilitiesClient";
 
 function WelcomeHeader() {
 
-  const { isLogin, user, userObj, setUserObj} = useUser();
+  const { isLogin, user} = useUser();
 
   
 
@@ -12,7 +12,7 @@ function WelcomeHeader() {
     <div>
       {isLogin ? (
         <>
-          <h1>Hello {userObj?.firstName}</h1>
+          <h1>Hello {user?.firstName}</h1>
         </>
       ) : (
         <>

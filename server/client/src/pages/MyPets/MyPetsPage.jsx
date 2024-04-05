@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { useUser } from "../../context/UserContext";
 import style from "../../utility.module.css";
 import { useNavigate } from "react-router-dom";
+import { usePet } from "../../context/PetContext";
+import Cookies from "js-cookie";
 
 function MyPetsPage() {
   const [searchType, setSearchType] = useState(true);
 
-  const { user, pets } = useUser();
-
+  const { user } = useUser();
+  
+const pets = JSON.parse(Cookies.get("usersPets"))
+console.log('pets: ', pets);
   const { ownedPets, savedPets, savedLength, ownedLength } = pets;
+  console.log('pets: ', pets);
 
   const petsList = searchType ? savedPets : ownedPets
 

@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const verifyToken = (req, res, next) => {
-  const cookies = req.cookies;
+  console.log('req: ', req.cookies);
+  const {cookies} = req;
+  console.log('cookies: ', cookies.token);
   if (!cookies?.token) return res.status(401).send('Token required.');
   const token = cookies.token;
 
@@ -11,7 +13,8 @@ const verifyToken = (req, res, next) => {
     if (err) {
       return res.status(401).send('Invalid token');
     }
-    req.body.userId = decoded.id;
+    req.userId = decoded.userId;
+    console.log('decoded.userId: ', decoded);
   });
   next();
 };
@@ -43,7 +46,7 @@ const verifyPassword = async (req, res, next) => {
         .send({ error: 'User not found. Please log in again.' });
     }
     
-    const isVerified = await bcrypt.compare(password, user.password);
+    const isVerified =  bcrypt.compare(password, user.password);
     if (!isVerified) {
         console.log('isVerified: ');
       return res
@@ -51,11 +54,12 @@ const verifyPassword = async (req, res, next) => {
         .send({ error: 'Wrong password. Please try again.' });
     }
     req.body.userId = user._id;
-    console.log('next: ');
     next();
   } catch (error) {
     console.log('error: ', error);
   }
 };
+
+
 
 module.exports = { verifyPassword, passwordMatch, verifyToken };

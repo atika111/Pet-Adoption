@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/user";
 import { getPetsByUserId } from "../../api/pet";
 import utilities from "../../utilitiesClient";
+import Cookies from "js-cookie";
 
 function Login() {
   const { setIsLogin, setUser, setPets, setUserObj } = useUser();
@@ -16,8 +17,8 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await login(email, password);
-      console.log('userData: ', data);
+      const { data } = await login(email, password);
+      console.log("userData: ", data);
       if (!data) {
         setError("Invalid email or password");
         return;
@@ -28,6 +29,10 @@ function Login() {
       setUser(data);
       setPets(pets);
       setIsLogin(true);
+
+      utilities.setCookie("token", data.token);
+      utilities.setCookie("usersPets", pets);
+      utilities.setCookie("user", data);
       navigate("/");
     } catch (error) {
       console.log("Login error:", error);

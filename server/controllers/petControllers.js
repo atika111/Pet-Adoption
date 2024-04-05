@@ -101,19 +101,20 @@ const getAllPets = asyncHandler(async (req, res) => {
 });
 const adoptOrFosterPet = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { adoptionStatus, userId } = req.body;
+  const { adoptionStatus, userId, currentAdoptionStatus, petOwnerId } = req.body;
   
 
   if (!adoptionStatus || typeof adoptionStatus !== "string") {
     return res.status(400).json({ message: "Adoption status is required" });
   }
 
-  // if (adoptionStatus !== "available" || "adopt") {
-  //   return res.status(400).json({ message: "The pet already foster" });
-  // }
+  if (petOwnerId !== userId && currentAdoptionStatus === "return") {
+    return res.status(400).json({ message: "You are not the owner of the pet" });
+  }
 
 
 
+  console.log('userId: ', userId);
   const updatedPet = await Pet.findByIdAndUpdate(
     id,
     { adoptionStatus: adoptionStatus, owner: userId },
@@ -136,7 +137,7 @@ const adoptOrFosterPet = asyncHandler(async (req, res) => {
 
   res
     .status(200)
-    .json({ message: `The pet is now ${updatedPet.adoptionStatus}`, status: updatedPet.adoptionStatus});
+    .json({ message: `The pet is now ${updatedPet.adoptionStatus}`, pet:updatedPet});
     
 });
 
