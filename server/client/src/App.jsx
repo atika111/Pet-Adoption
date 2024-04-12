@@ -14,21 +14,22 @@ import AddPet from "./pages/Admin/AddPet";
 import PetDetails from "./components/Pet/PetDetails";
 import { useUser } from "./context/UserContext";
 import EditPet from "./components/Pet/editPet";
-import Cookies from "js-cookie";
+import utilities from "./utilitiesClient";
 import { useEffect } from "react";
 import { usePet } from "./context/PetContext";
 
 function App() {
-  const { isLogin, setIsLogin, user, fetchCurrentUser, isClick } = useUser();
+  const { isLogin, setIsLogin, fetchCurrentUser } = useUser();
+
   const { pets } = usePet();
 
+  const user = utilities.getCookie("user")
+  
   useEffect(() => {
     if (!isLogin && user) {
       fetchCurrentUser();
     }
   }, [isLogin, user, pets]);
-
-  console.log("user: ", user?.isAdmin);
   return (
     <>
       <Routes>
@@ -38,7 +39,7 @@ function App() {
               <Route index path="/" element={<HomeLoggedIn />} />
               <Route path="/profile" element={<ProfileSetting />} />
 
-              {user?.isAdmin ? (
+              {user.isAdmin || null  ? (
                 <Route path="/dashboard" element={<Dashboard />} />
               ) : null}
               <Route path="/search" element={<SearchBar />} />

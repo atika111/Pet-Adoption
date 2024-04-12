@@ -31,7 +31,7 @@ function PetModal({ data, updatePetsList }) {
       console.log("updatedPet: ", updatedPet);
 
       setSuccessMessage(updatedPet.data.message);
-      refreshList()
+      refreshList();
     } catch (error) {
       console.log("Failed to update pet: ", error);
       setError("Failed to update pet");
@@ -49,9 +49,9 @@ function PetModal({ data, updatePetsList }) {
   };
 
   const refreshList = () => {
-    fetchPetsData()
-    fetchUsersData()
-  }
+    fetchPetsData();
+    fetchUsersData();
+  };
 
   useEffect(() => {
     const pet = data.pets.find((pet) => pet._id === data.petId);

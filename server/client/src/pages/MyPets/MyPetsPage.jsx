@@ -11,9 +11,8 @@ function MyPetsPage() {
   const { user } = useUser();
   
 const pets = JSON.parse(Cookies.get("usersPets"))
-console.log('pets: ', pets);
+
   const { ownedPets, savedPets, savedLength, ownedLength } = pets;
-  console.log('pets: ', pets);
 
   const petsList = searchType ? savedPets : ownedPets
 

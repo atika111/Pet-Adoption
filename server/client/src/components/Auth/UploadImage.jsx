@@ -20,6 +20,14 @@ function UploadImage({ setAvatarImage }) {
     setAvatarImage(selectedImage);
   };
 
+  useEffect(() => {
+    return () => {
+      if (avatarImageUrl) {
+        URL.revokeObjectURL(avatarImageUrl);
+      }
+    };
+  }, [avatarImageUrl]);
+
   return (
     <div>
       <Avatar

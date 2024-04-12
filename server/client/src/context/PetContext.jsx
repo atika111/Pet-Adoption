@@ -6,33 +6,32 @@ const petContext = createContext();
 function PetProvider({ children }) {
   const [petDetail, setPetDetail] = useState({});
   const [pets, setPets] = useState([]);
+  const [isSaved, setIsSaved] = useState(false);
 
   const fetchPetData = async (petId) => {
     try {
       const data = await getPetById(petId);
-    setPetDetail(data);
+      setPetDetail(data);
     } catch (error) {
-      console.log('error: ', error);
-      
+      console.log("error: ", error);
     }
   };
 
   const fetchPetsData = async () => {
     const pets = await getAllPets();
-    console.log('pets: ', pets);
+    console.log("pets: ", pets);
     setPets(pets);
   };
 
   const fetchPetsById = async (userId) => {
-try {
- const data = await getPetsByUserId(userId)
- console.log('data: ', data);
- setPets(data)
-} catch (error) {
-  console.log('error: ', error);
-  
-}
-  } 
+    try {
+      const data = await getPetsByUserId(userId);
+      console.log("data: ", data);
+      setPets(data);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
   return (
     <petContext.Provider
       value={{
@@ -43,6 +42,8 @@ try {
         pets,
         setPets,
         setPetDetail,
+        isSaved,
+        setIsSaved,
       }}
     >
       {children}

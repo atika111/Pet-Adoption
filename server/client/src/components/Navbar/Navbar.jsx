@@ -5,78 +5,51 @@ import styles from "../../utility.module.css";
 import "../Navbar/navbar.css";
 import { useUser } from "../../context/UserContext";
 import Login from "../Auth/Login";
-import Modal from "../Auth/Modal";
+import Modal from "../UtilitiesComponent/Modal";
+import ToggleLoginSignupContent from "../Auth/ToggleLoginSignupContent";
 import { logout } from "../../api/user";
 import Cookies from "js-cookie";
+import { useModal } from "../../context/ModalContext";
+import MenuItem from "./MenuItem";
 
 function Navbar() {
   const [isActive, setIsActive] = useState({
     image: false,
     menu: false,
   });
-  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const { isLogin, setIsLogin, user, setIsClick,  isClick} = useUser();
+  const { isLogin, setIsLogin, user } = useUser();
+  const { isOpen, openModal, closeModal, modalContent } = useModal();
 
-  const toggleIsActive = (e) => {
-    const stateObj = checkEventModal(e);
-    setIsActive({ ...stateObj });
+  const toggleIsActive = (id) => {
+    setIsActive((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
   };
 
-  const checkEventModal = (e) => {
-    const { id } = e.currentTarget;
-    console.log("e.currentTarget: ", id);
-
-    if (typeof id === "string") id.toString();
-    console.log("typeof id === ", typeof id === "string");
-    const stateObj = {
-      image: false,
-      menu: false,
-    };
-
-    switch (id) {
-      case "image":
-        stateObj.image = !isActive.image;
-        stateObj.menu = false;
-        break;
-      case "menu":
-        stateObj.menu = !isActive.menu;
-        stateObj.image = false;
-        break;
-
-      default:
-        console.log(`Error navbar modal value ${id}`);
-    }
-
-    return stateObj;
-  };
-
-  const removeActive = (e) => {
-    const { id } = e.currentTarget;
-    console.log("e.currentTarget: ", id);
-    if (!isActive.hasOwnProperty(id)) {
-      throw new Error(`Cant remove isActive ${id}`);
-    }
-    setIsActive((prevData) => ({
-      ...prevData,
-      [id]: !isActive[id],
+  const removeActive = (id) => {
+    setIsActive((prev) => ({
+      ...prev,
+      [id]: false,
     }));
   };
 
   const handleLogoutUser = async () => {
     try {
-      const res = await logout();
-      Cookies.remove("token")
-      Cookies.remove("usersPets")
-      Cookies.remove("user")
+      await logout();
+      Cookies.remove("token");
+      Cookies.remove("usersPets");
+      Cookies.remove("users");
+      Cookies.remove("user");
+      setIsLogin(false);
     } catch (error) {
       console.log("error: ", error);
     }
-    setIsLogin(false);
   };
 
   const handleOpenAccountModal = () => {
-    setIsOpenModal(true);
+    openModal(<ToggleLoginSignupContent />);
   };
 
   return (
@@ -85,38 +58,41 @@ function Navbar() {
         <nav>
           <div
             id="menu"
-            onClick={(e) => toggleIsActive(e)}
+            onClick={() => toggleIsActive("menu")}
             className={`header__icon-list ${
-              isActive.image ? styles.active : ""
+              isActive.menu ? styles.active : ""
             }`}
           >
             <PiListFill />
           </div>
 
           <div className={`Header__menu ${isActive.menu ? styles.active : ""}`}>
-            <ul className={`${styles.menuModal} ${styles.navbar__links} `}>
-              <li id="menu" onClick={(e) => removeActive(e)}>
-                <Link to="/">Home</Link>
-              </li>
-              <li id="menu" onClick={(e) => removeActive(e)}>
-                <Link to="/search">Search</Link>
-              </li>
-
+            <ul className={`${styles.menuModal} ${styles.navbar__links}`}>
+              <MenuItem id="menu" onClick={removeActive} to="/">
+                Home
+              </MenuItem>
+              <MenuItem id="menu" onClick={removeActive} to="/search">
+                Search
+              </MenuItem>
               {isLogin && (
                 <>
                   {user?.isAdmin && (
                     <>
-                      <li id="menu" onClick={(e) => removeActive(e)}>
-                        <Link to="/dashboard">Dashboard</Link>
-                      </li>
-                      <li id="menu" onClick={(e) => removeActive(e)}>
-                        <Link to="/addPet">Add pet</Link>
-                      </li>
+                      <MenuItem
+                        id="menu"
+                        onClick={removeActive}
+                        to="/dashboard"
+                      >
+                        Dashboard
+                      </MenuItem>
+                      <MenuItem id="menu" onClick={removeActive} to="/addPet">
+                        Add pet
+                      </MenuItem>
                     </>
                   )}
-                  <li id="menu" onClick={(e) => removeActive(e)}>
-                    <Link to="/myPets">My pets</Link>
-                  </li>
+                  <MenuItem id="menu" onClick={removeActive} to="/myPets">
+                    My pets
+                  </MenuItem>
                 </>
               )}
             </ul>
@@ -126,11 +102,12 @@ function Navbar() {
           <>
             <div
               id="image"
-              className={`header__user-image 
-        }`}
+              className={`header__user-image ${
+                isActive.image ? styles.active : ""
+              }`}
               src=""
               alt=""
-              onClick={(e) => toggleIsActive(e)}
+              onClick={() => toggleIsActive("image")}
             >
               <img src={user?.picture} alt="User" />
             </div>
@@ -140,21 +117,31 @@ function Navbar() {
                 isActive.image ? styles.active : ""
               } user-image-modal`}
             >
-              <li id="image" onClick={(e) => removeActive(e)}>
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li id="image" onClick={(e) => removeActive(e)}>
-                <Link onClick={handleLogoutUser} to="/">
-                  Logout
-                </Link>
-              </li>
+              <MenuItem id="image" onClick={removeActive} to="/profile">
+                Profile
+              </MenuItem>
+              <MenuItem
+                id="image"
+                onClick={() => {
+                  removeActive("image");
+                  handleLogoutUser();
+                }}
+                to="/"
+              >
+                Logout
+              </MenuItem>
             </ul>
           </>
         ) : (
-          <>
-            <button onClick={handleOpenAccountModal}>Login</button>
-            {isOpenModal && <Modal />}
-          </>
+          <button onClick={handleOpenAccountModal}>Login</button>
+        )}
+        {isOpen && (
+          <Modal
+            isOpen={isOpen}
+            openModal={openModal}
+            closeModal={closeModal}
+            modalContent={modalContent}
+          />
         )}
       </header>
       <Outlet />

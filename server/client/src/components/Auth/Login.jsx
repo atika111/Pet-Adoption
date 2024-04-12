@@ -1,44 +1,102 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useUser } from "../../context/UserContext";
 import "./auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/user";
 import { getPetsByUserId } from "../../api/pet";
 import utilities from "../../utilitiesClient";
-import Cookies from "js-cookie";
+import { useModal } from "../../context/ModalContext";
+import { actionTypes } from "../../Reducers/userReducer";
 
-function Login() {
-  const { setIsLogin, setUser, setPets, setUserObj } = useUser();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+function Login({ showSignup }) {
+  console.log("showSignup: ", showSignup);
+  const {
+    setIsLogin,
+    setUser,
+    setPets,
+    setUserObj,
+    fetchUsersData,
+    state,
+    dispatch,
+  } = useUser();
+
+  const { closeModal } = useModal();
+
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await login(email, password);
-      console.log("userData: ", data);
-      if (!data) {
-        setError("Invalid email or password");
-        return;
-      }
+  const fetchCurrentUserData = async (data) => {
+    const pets = await getPetsByUserId(data.userId);
+    const users = await fetchUsersData();
+    const userData = {
+      usersPets: pets,
+      users,
+      user: data,
+      token: data.token,
+    };
+    return userData;
+  };
 
-      const pets = await getPetsByUserId(data.userId);
-      setUserObj(utilities.convertArrayToObject(data));
-      setUser(data);
-      setPets(pets);
-      setIsLogin(true);
+  const setCurrentUserData = (userData) => {
+    const { pets, user } = userData;
+    setUserObj(utilities.convertArrayToObject(user));
+    setUser(user);
+    setPets(pets);
+    setIsLogin(true);
+  };
 
-      utilities.setCookie("token", data.token);
-      utilities.setCookie("usersPets", pets);
-      utilities.setCookie("user", data);
-      navigate("/");
-    } catch (error) {
-      console.log("Login error:", error);
-      setError("An error occurred during login");
+  const setCookies = (userData) => {
+    console.log('userData: ', userData);
+    for (const key in userData) {
+      utilities.setCookie(key, userData[key]);
     }
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    utilities.handleSaveStateKeysForCleaningInput({
+      ...{ target: e.target, actionTypes, dispatch },
+    });
+
+    try {
+      utilities.resetStatesAndStartNew({ ...{ dispatch, actionTypes } });
+      const { data } = await login(
+        state.dynamicFields.email,
+        state.dynamicFields.password
+      );
+
+      const userData = await fetchCurrentUserData(data);
+
+      utilities.handleSuccessResponse({
+        ...{ success: data?.message, dispatch, actionTypes },
+      });
+      closeModal();
+      setCurrentUserData(userData);
+      setCookies(userData);
+    } catch (error) {
+      console.log("error: ", error);
+
+      utilities.handleErrorResponse({
+        ...{ error: error?.message, dispatch, actionTypes },
+      });
+    } finally {
+      dispatch({ type: actionTypes.SET_LOADING, isLoading: false });
+    }
+  };
+
+  useEffect(() => {
+    
+    
+      return () => {
+        const isLoading = false;
+
+        utilities.resetStatesAndStartNew({
+          ...{ isLoading, dispatch, actionTypes },
+        });
+        utilities.handleCleanInput({
+          ...{ FormDataKeys: state.FormDataKeys, actionTypes, dispatch },
+        });
+      };
+  }, []);
 
   return (
     <div className="login">
@@ -48,20 +106,35 @@ function Login() {
         <input
           type="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          value={state.dynamicFields?.email}
+          onChange={(e) =>
+            utilities.handleInputChange({
+              ...{ actionTypes, dispatch, target: e.target },
+            })
+          }
           required
         />
+
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          value={state.dynamicFields?.password}
+          onChange={(e) =>
+            utilities.handleInputChange({
+              ...{ actionTypes, dispatch, target: e.target },
+            })
+          }
           required
         />
-        {error && <p className="error">{error}</p>}
-        <button type="submit">Login</button>
+        {state?.isError ? (
+          <p className="error">{state.error}</p>
+        ) : (
+          <p className="success">{state.successMessage}</p>
+        )}
+        <button type="submit">{state.isLoading ? "Login..." : "Login"}</button>
       </form>
     </div>
   );

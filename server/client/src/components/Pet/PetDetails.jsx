@@ -15,21 +15,25 @@ import Cookies from "js-cookie";
 
 function PetDetails() {
   const [adoptionStatus, setAdoptionStatus] = useState("");
-  const [isSaved, setIsSaved] = useState(false);
 
   const { petId } = useParams();
 
-  const { petDetail, fetchPetData, setPets, setPetDetail } = usePet();
+  const {
+    petDetail,
+    fetchPetData,
+    setPets,
+    setPetDetail,
+    isSaved,
+    setIsSaved,
+  } = usePet();
   const { user, isLogin } = useUser();
 
   const checkIfSavedPet = () => {
     const usersPets = Cookies.get("usersPets");
     if (usersPets) {
-      const {savedPets} = JSON.parse(usersPets);
-      console.log('parsedSavedPets: ', savedPets);
-      const isSaved = savedPets.some(
-        (savedPet) => savedPet._id === petId
-      );
+      const { savedPets } = JSON.parse(usersPets);
+      console.log("parsedSavedPets: ", savedPets);
+      const isSaved = savedPets.some((savedPet) => savedPet._id === petId);
       setIsSaved(isSaved);
     } else {
       setIsSaved(false);

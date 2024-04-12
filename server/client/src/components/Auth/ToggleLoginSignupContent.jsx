@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 
-function Modal() {
+function ToggleLoginSignupContent() {
   const [showSignup, setShowSignup] = useState(false);
 
   const toggleSignup = () => {
     setShowSignup(!showSignup);
+    
+    
   };
 
   return (
-    <div className="modal-container">
-      <div className="modal-content">
-        {showSignup ? <Signup /> : <Login />}
+    <div>
+      <div>
+        {showSignup ? <Signup showSignup={showSignup}/> : <Login showSignup={showSignup}/>}
         <p>
-          {showSignup
-            ? "Already have an account? "
-            : "Don't have an account? "}
+          {showSignup ? "Already have an account? " : "Don't have an account? "}
           <button onClick={toggleSignup}>
             {showSignup ? "Login" : "Sign Up"}
           </button>
@@ -26,4 +26,4 @@ function Modal() {
   );
 }
 
-export default Modal;
+export default ToggleLoginSignupContent;

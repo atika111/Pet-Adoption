@@ -1,66 +1,75 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useUser } from "../../context/UserContext";
 import { signup } from "../../api/user";
 import { useNavigate } from "react-router-dom";
 import UploadImage from "./UploadImage";
+import { useModal } from "../../context/ModalContext";
+import utilities from "../../utilitiesClient";
+import { actionTypes } from "../../Reducers/userReducer";
 
-function Signup() {
-  const { state, dispatch, defaultImage} = useUser(); 
+function Signup({showSignup}) {
+  console.log('showSignup: ', showSignup);
+  const { state, dispatch, defaultImage } = useUser();
 
-  
   const navigate = useNavigate();
+
   const handleChange = (e) => {
-    dispatch({
-      type: "SET_FIELD",
-      field: e.target.name,
-      value: e.target.value,
+    utilities.handleInputChange({
+      ...{ actionTypes, dispatch, target: e.target },
     });
   };
+  const handleAppendForm = () => {
+    const newUser = new FormData();
 
-  const handleSignupSuccess = (message) => {
-    dispatch({ type: "SUCCESS_MESSAGE", successMessage: message });
-    navigate("/login");
+    for (const key in state.dynamicFields) {
+      newUser.append(key, state.dynamicFields[key]);
+    }
+    if (!state.dynamicFields.avatarImage) {
+      newUser.append("avatarImage", state.avatarImage || defaultImage);
+    }
+    return newUser;
   };
-
-  const handleSignupError = (error) => {
-    dispatch({ type: "SET_IS_ERROR", isError: true });
-    dispatch({ type: "SET_ERROR", error: error});
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("e.target: ", e.target);
 
+    utilities.handleSaveStateKeysForCleaningInput({
+      ...{ target: e.target, actionTypes, dispatch },
+    });
     dispatch({ type: "SUCCESS_MESSAGE", successMessage: "" });
     dispatch({ type: "SET_LOADING", isLoading: true });
 
-    const newUser = new FormData();
-
-    newUser.append("email", state.email);
-    newUser.append("password", state.password);
-    newUser.append("repPassword", state.repPassword);
-    newUser.append("firstName", state.firstName);
-    newUser.append("lastName", state.lastName);
-    newUser.append("nickName", state.nickname);
-    newUser.append("address", state.address);
-    newUser.append("phoneNumber", state.phoneNumber);
-    newUser.append("role", state.role);
-    newUser.append("avatarImage", state.avatarImage || defaultImage);
-
-    console.log(" state.avatarImage: ", state.avatarImage);
-
+    const newUser = handleAppendForm();
     try {
-      dispatch({ type: "RESET_ERROR", isError: false });
-      dispatch({ type: "SET_ERROR", error: "" });
+      utilities.resetStatesAndStartNew({ ...{ dispatch, actionTypes } });
 
       const { data } = await signup(newUser);
-      handleSignupSuccess(data.message);
-    } catch (error) {
-      handleSignupError(error?.message);
 
+      utilities.handleSuccessResponse({
+        ...{ success: data?.message, dispatch, actionTypes },
+      });
+    } catch (error) {
+      console.log("error: ", error);
+      utilities.handleErrorResponse({
+        ...{ error: error?.message, dispatch, actionTypes },
+      });
     } finally {
       dispatch({ type: "SET_LOADING", isLoading: false });
     }
   };
+
+  useEffect(() => {
+    return () => {
+      const isLoading = false;
+
+      utilities.resetStatesAndStartNew({
+        ...{ isLoading, dispatch, actionTypes },
+      });
+      utilities.handleCleanInput({
+        ...{ FormDataKeys: state.FormDataKeys, actionTypes, dispatch },
+      });
+    };
+  }, []);
   return (
     <div className="signup">
       <h1>Sign Up</h1>
@@ -77,71 +86,79 @@ function Signup() {
         <input
           type="text"
           name="email"
+          id="email"
           placeholder="Email"
-          value={state.email}
+          value={state.dynamicFields.email}
           onChange={handleChange}
           required
         />
         <input
           type="password"
           name="password"
+          id="password"
           placeholder="Password"
-          value={state.password}
+          value={state.dynamicFields.password}
           onChange={handleChange}
           required
         />
         <input
           type="password"
           name="repPassword"
+          id="repPassword"
           placeholder="Confirm Password"
-          value={state.repPassword}
+          value={state.dynamicFields.repPassword}
           onChange={handleChange}
           required
         />
         <input
           type="text"
           name="firstName"
+          id="firstName"
           placeholder="First Name"
-          value={state.firstName}
+          value={state.dynamicFields.firstName}
           onChange={handleChange}
           required
         />
         <input
           type="text"
           name="lastName"
+          id="lastName"
           placeholder="Last Name"
-          value={state.lastName}
+          value={state.dynamicFields.lastName}
           onChange={handleChange}
           required
         />
         <input
           type="text"
           name="nickname"
+          id="nickname"
           placeholder="Nickname"
-          value={state.nickname}
+          value={state.dynamicFields.nickname}
           onChange={handleChange}
           required
         />
         <input
           type="address"
           name="address"
+          id="address"
           placeholder="Address"
-          value={state.address}
+          value={state.dynamicFields.address}
           onChange={handleChange}
           required
         />
         <input
           type="number"
           name="phoneNumber"
+          id="phoneNumber"
           placeholder="Phone"
-          value={state.phoneNumber}
+          value={state.dynamicFields.phoneNumber}
           onChange={handleChange}
           required
         />
-        <button type="submit" onClick={handleSubmit}>
-          Sign Up
+        <button type="submit">
+          {state.isLoading ? "Sign Up..." : "Sign Up"}
         </button>
-        <p>{state.error}</p>
+        {state.isError && <p>"Error:"{state.error}</p>}
         <p>{state.successMessage}</p>
       </form>
     </div>

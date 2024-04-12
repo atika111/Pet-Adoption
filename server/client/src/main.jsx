@@ -5,13 +5,19 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import { UserProvider } from "./context/UserContext.jsx";
 import { PetProvider } from "./context/PetContext.jsx";
+import { ModalProvider } from "./context/ModalContext.jsx";
+import { ResponseProvider } from "./context/ResponseContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <UserProvider>
-      <PetProvider>
-        <App />
-      </PetProvider>
-    </UserProvider>
+    <ResponseProvider>
+      <UserProvider>
+        <PetProvider>
+          <ModalProvider>
+            <App />
+          </ModalProvider>
+        </PetProvider>
+      </UserProvider>
+    </ResponseProvider>
   </BrowserRouter>
 );

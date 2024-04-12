@@ -16,42 +16,47 @@ const signup = async (newUser) => {
     return data;
   } catch (error) {
     console.log("error: ", error);
+    if (error.response.data.error) throw new Error(error.response.data.error);
     if (error.response && error.response.data) {
-      throw new Error(error.response.data?.error);
+      throw new Error(error.response.data);
     } else {
       throw new Error("An error occurred while processing your request.");
     }
   }
 };
 
-
 const login = async (email, password) => {
   try {
-    const data  = await api.post(`${serverUrl}/user/login`, {
+    const data = await api.post(`${serverUrl}/user/login`, {
       email,
-      password, 
+      password,
     });
-    console.log('data: ', data);
+    console.log("data: ", data);
     return data;
   } catch (error) {
-    console.log("Hiii");
-    throw new Error("An error occurred during login");
+    console.log("error: ", error);
+    if (error.response.data.error) throw new Error(error.response.data.error);
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data);
+    } else {
+      throw new Error("An error occurred while processing your request.");
+    }
   }
 };
 
 const logout = async () => {
   try {
-    const res = await api(`${serverUrl}/user/logout`)
-    console.log('res: ', res);
+    const res = await api(`${serverUrl}/user/logout`);
+    console.log("res: ", res);
   } catch (error) {
-    console.log('error: ', error);
-    
+    console.log("error: ", error);
   }
-}
+};
 
 const getAllUsers = async () => {
   try {
     const { data } = await api(`${serverUrl}/user/users`);
+    console.log("data: ", data);
 
     return data;
   } catch (error) {
@@ -72,29 +77,36 @@ const updateUser = async () => {
 
 const deleteUser = async (userId) => {
   try {
-  const data = await api.delete(`${serverUrl}/user/user/${userId}`, {
-    withCredentials: true
-  });
-  console.log('data: ', data);
+    const data = await api.delete(`${serverUrl}/user/user/${userId}`, {
+      withCredentials: true,
+    });
+    console.log("data: ", data);
     // return res
   } catch (error) {
-    console.log('error: ', error);
-    
+    console.log("error: ", error);
   }
 };
 
-const fetchUser = async() => {
+const fetchUser = async () => {
   console.log("Hi i am at the fetch User");
-try {
-  const {data}  = await api.get(`${serverUrl}/user/current-user`,{
-    withCredentials: true
-  })
+  try {
+    const { data } = await api.get(`${serverUrl}/user/current-user`, {
+      withCredentials: true,
+    });
 
-  return data
-} catch (error) {
-  throw new Error(error.response.data.message)
-  
-}
-}
+    return data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
 
-export { signup, login, getAllUsers, getUserById, updateUser, deleteUser , fetchUser , logout};
+export {
+  signup,
+  login,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+  fetchUser,
+  logout,
+};

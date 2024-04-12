@@ -4,6 +4,10 @@ import { Card, Input } from "@mui/material";
 import axios from "axios";
 import { addPet } from "../../api/pet";
 import { useUser } from "../../context/UserContext";
+import UploadImage from "../../components/Auth/UploadImage";
+import { useEffect } from "react";
+import utilities from "../../utilitiesClient";
+import { actionTypes } from "../../Reducers/userReducer";
 
 function AddPet() {
   const [newPet, setNewPet] = useState({
@@ -23,24 +27,23 @@ function AddPet() {
 
   const { state, dispatch } = useUser();
 
-  const handleFileChange = (e) => {
-    const fileInput = e.target;
-    const file = fileInput.files[0];
+  const handleFileChange = (image) => {
+    console.log("image: ", image);
 
     setNewPet((prevData) => ({
       ...prevData,
-      picture: file,
+      picture: image,
     }));
   };
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
+    utilities.handleSaveStateKeysForCleaningInput({
+      ...{ target: event.target, actionTypes, dispatch },
+    });
 
     try {
-      dispatch({ type: "IS_LOADING", isLoading: true });
-      dispatch({ type: "SET_IS_ERROR", isError: false });
-      dispatch({ type: "RESET_ERROR" });
-      dispatch({ type: "SUCCESS_MESSAGE", successMessage: "" });
+      utilities.resetStatesAndStartNew({ ...{ dispatch, actionTypes } });
 
       const formData = new FormData();
       for (let key in newPet) {
@@ -48,31 +51,38 @@ function AddPet() {
       }
 
       const addedPet = await addPet(formData);
-      // console.log('addedPet: ', addedPet);
-      dispatch({
-        type: "SUCCESS_MESSAGE",
-        successMessage: "Successfully Added a Pet",
+
+      utilities.handleSuccessResponse({
+        ...{ success: addedPet?.message, dispatch, actionTypes },
       });
     } catch (error) {
-      dispatch({ type: "SET_ERROR", error: error.message });
-      dispatch({ type: "SET_IS_ERROR", isError: true });
+      utilities.handleErrorResponse({
+        ...{ error: error?.message, dispatch, actionTypes },
+      });
       console.log("error: ", error);
-    } finally {
-      dispatch({ type: "IS_LOADING", isLoading: false });
     }
   };
 
+  useEffect(() => {
+    return () => {
+      const isLoading = false;
+
+      utilities.resetStatesAndStartNew({
+        ...{ isLoading, dispatch, actionTypes },
+      });
+      utilities.handleCleanInput({
+        ...{ FormDataKeys: state.FormDataKeys, actionTypes, dispatch },
+      });
+    };
+  }, []);
   return (
     <div>
       <form onSubmit={handleOnSubmit}>
         <Card className="profile" sx={{}}>
           <h1>New Pet</h1>
-          <Input
-            type="file"
-            id="petImg"
-            name="picture"
-            onChange={(e) => handleFileChange(e)}
-          />
+
+          <UploadImage setAvatarImage={(image) => handleFileChange(image)} />
+
           {Object.entries(newPet).map(([key, value]) => {
             if (key === "picture") return null;
 

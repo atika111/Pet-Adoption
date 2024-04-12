@@ -18,6 +18,7 @@ function UserProvider({ children }) {
   const [pets, setPets] = useState(null);
   const userId = "6609a04cf1f1fa3c21625986";
   const [users, setUsers] = useState([]);
+  const [keysInput, setKeysInput] = useState({});
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
@@ -26,17 +27,17 @@ function UserProvider({ children }) {
 
   const fetchUsersData = async () => {
     const users = await getAllUsers();
-
     setUsers(users);
+    return users
   };
 
   const fetchCurrentUser = async () => {
     try {
       const user = await fetchUser();      
-      utilities.setCookie("user", user)
       setUser(user)
       setIsLogin(true)
     } catch (error) {
+      // utilities.setCookie("user", user)
       console.log("error: ", error.message);
     }
   };
@@ -59,6 +60,7 @@ function UserProvider({ children }) {
         dispatch,
         defaultImage,
         fetchCurrentUser,
+        keysInput, setKeysInput
       
       }}
     >

@@ -3,34 +3,40 @@ import { FcLike } from "react-icons/fc";
 import "./search.css";
 import style from "../../utility.module.css";
 import { useNavigate } from "react-router-dom";
-import { savePet } from "../../api/pet";
+import { getPetsByUserId, savePet } from "../../api/pet";
 import { useUser } from "../../context/UserContext";
 import Cookies from "js-cookie";
+import { usePet } from "../../context/PetContext";
+import utilities from "../../utilitiesClient";
 
 function SearchResult({ searchResult }) {
-  // user id form Context
-  // const { user} = useUser()
+  const { setIsSaved, setPets } = usePet();
 
-  const user = JSON.parse(Cookies.get("user"));
+  const user = utilities.getCookie('user');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleSavePets = async(e, petId) => {
-    console.log(user.userId, petId);
+  const handleSavePets = async (e, petId) => {
     e.stopPropagation();
-    const savedPet = await savePet(user.userId, petId)  
-    console.log('savedPet: ', savedPet);
+    const savedPet = await savePet(user.userId, petId);
+    const pets = await getPetsByUserId(user.userId);
+    setPets(pets);
+    utilities.setCookie("usersPets", pets);
   };
 
   const handleClickedPetCard = (petId) => {
-    navigate(`/petDetails/${petId}`)
-  }
+    navigate(`/petDetails/${petId}`);
+  };
 
   return (
     <div className="result-container">
       {Object.keys(searchResult).length > 0 &&
         searchResult.map((data) => (
-          <div onClick={() => handleClickedPetCard(data._id)} key={data._id} className={`${style.card} card`}>
+          <div
+            onClick={() => handleClickedPetCard(data._id)}
+            key={data._id}
+            className={`${style.card} card`}
+          >
             <FcLike
               onClick={(e) => handleSavePets(e, data._id)}
               className={`${style.icon} card__icon-like`}
