@@ -15,3 +15,28 @@
 20240405	10:11:23	bdfda9e6-fdc9-4e16-b278-8026c1637c9a	TypeError: Cannot read properties of null (reading 'toString')	POST	/pet/pet/65787c15f3cfb954858c051e/return	http://localhost:5173
 20240405	16:14:44	8c2f1a6e-58e9-44fe-be9d-afead4010384	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
 20240405	17:43:30	62250db6-8369-485c-8c41-6a182e6de3ba	ReferenceError: newList is not defined	PUT	/pet/pet/65787c15f3cfb954858c051e/save	http://localhost:5173
+20240407	18:45:34	198bda79-191b-41cd-b23f-3a15ad3cf4e6	Error: write ECONNRESET	POST	/user/signup	http://localhost:5173
+20240407	18:46:51	9e9ebab6-394c-4f5e-8358-9757707ac3e7	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240407	18:49:17	0ab6ec82-cb7a-47f2-93a4-95ee9f247559	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240407	18:50:22	cd2bbb06-4406-4780-a28a-b97056824de9	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240407	18:53:08	6e79ff19-e19d-43a9-b797-520a414ce4be	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240407	18:53:16	65d83945-2acb-4414-985f-a63c16c1d36d	Error: read ECONNRESET	POST	/user/signup	http://localhost:5173
+20240407	20:22:06	8081f6f9-6fda-46ca-aab7-e4e4393f7077	TimeoutError: Request Timeout	POST	/user/signup	http://localhost:5173
+20240407	23:20:25	255d9f97-53b5-48fb-8b84-04f6e1db6a34	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/6578927b019e66b733d6f477	http://localhost:5173
+20240407	23:20:40	d9acdb76-0a31-4853-8f71-dbdc8e7fb0f2	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/6578927b019e66b733d6f477	http://localhost:5173
+20240407	23:20:45	1f663c73-189b-4ffd-a065-305a47b67749	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/6578927b019e66b733d6f477	http://localhost:5173
+20240407	23:22:42	02fc51f7-8ae1-4a08-ad51-0b9c26792c69	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/6578927b019e66b733d6f477	http://localhost:5173
+20240408	08:51:18	bd2158bf-f4f7-4bc1-8cc4-9f01cfdb84a0	ReferenceError: newList is not defined	PUT	/pet/pet/65787c15f3cfb954858c051e/save	http://localhost:5173
+20240408	21:34:33	863cabe3-afad-42a4-aee3-77fa7976db90	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/6579969cf231e71aa1bfa665	http://localhost:5173
+20240408	21:35:28	c031e7bc-1cfc-44b8-85ee-30c551f12038	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240409	20:07:43	430397c6-97f9-4d05-a2f7-8be4578bb4a0	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=atikakalfa08054%40gmail.com&searchType=advance	http://localhost:5173
+20240410	20:34:18	6dd84581-0120-44b6-a8df-f88bed0bebcb	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=%3CSecret%3Ealert%28%29%3C+script%2F%3E	http://localhost:5173
+20240410	22:11:31	db68bfab-0980-4923-b53b-ec7f0ed9f37e	ReferenceError: newList is not defined	PUT	/pet/pet/65787c15f3cfb954858c051e/save	http://localhost:5173
+20240411	08:35:45	0e495842-eea1-4e82-bb0b-2cc6234a9c1d	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-00.1ttsot9.mongodb.net	GET	/pet/pet/657996c7dd5024ec897eeca7	http://localhost:5173
+20240411	10:15:49	412eee8c-7ffe-49e9-801c-3859d2b53568	ReferenceError: newList is not defined	PUT	/pet/pet/657892b0019e66b733d6f479/save	http://localhost:5173
+20240411	10:16:02	379a0a2c-2d52-43da-b7af-bedca2d6521b	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240411	10:23:15	5a90026f-ce54-4884-aaad-68409085d561	ReferenceError: newList is not defined	PUT	/pet/pet/657892b5019e66b733d6f47b/save	http://localhost:5173
+20240411	10:51:30	9bdf72de-b7ad-4e51-99ec-6f69f7e5be0b	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=Co&searchType=advance	http://localhost:5173
+20240411	10:52:39	346c17c6-696b-4c73-8445-707827bbd0b4	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=COCOCOCC	http://localhost:5173
+20240411	10:57:53	addcc2b1-0462-4b4c-906a-ace1f96dba17	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=CCCCC&searchType=advance	http://localhost:5173
+20240411	11:33:31	e493ffac-4caf-4905-993b-1c7c92548c1a	Error: File size too large. Got 46473203. Maximum is 10485760.	POST	/pet/pet	http://localhost:5173

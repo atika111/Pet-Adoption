@@ -166,7 +166,7 @@ async function getUserByToken(req, res) {
       firstName: user.firstName,
       userId: user._id,
       email: user.email,
-      admin: user.isAdmin,
+      isAdmin: user.isAdmin,
       picture: user.picture,
     };
 

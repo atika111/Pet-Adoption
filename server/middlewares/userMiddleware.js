@@ -21,6 +21,7 @@ const verifyToken = (req, res, next) => {
 
 const passwordMatch = (req, res, next) => {
   const repPassword = req.body.repPassword;
+  console.log('repPassword: ', repPassword);
   if (!repPassword) {
     return res.status(400).send({ error: 'Please, provide repPassword field' });
   }
@@ -48,7 +49,6 @@ const verifyPassword = async (req, res, next) => {
     
     const isVerified =  bcrypt.compare(password, user.password);
     if (!isVerified) {
-        console.log('isVerified: ');
       return res
         .status(400)
         .send({ error: 'Wrong password. Please try again.' });
