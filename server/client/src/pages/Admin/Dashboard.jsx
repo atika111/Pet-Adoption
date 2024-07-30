@@ -8,6 +8,7 @@ function Dashboard() {
   const { fetchPetsData, pets } = usePet();
   const { fetchUsersData, users, state} = useUser();
   useEffect(() => {
+    console.log("in Parent");
     fetchPetsData();
     fetchUsersData();
   }, []);

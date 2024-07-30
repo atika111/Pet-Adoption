@@ -56,6 +56,7 @@ function Navbar() {
     <div>
       <header className="header">
         <nav>
+          {/* MENU START*/}
           <div
             id="menu"
             onClick={() => toggleIsActive("menu")}
@@ -78,6 +79,7 @@ function Navbar() {
                 <>
                   {user?.isAdmin && (
                     <>
+                    {/* ADMIN MENU START*/}
                       <MenuItem
                         id="menu"
                         onClick={removeActive}
@@ -93,11 +95,15 @@ function Navbar() {
                   <MenuItem id="menu" onClick={removeActive} to="/myPets">
                     My pets
                   </MenuItem>
+                  
+                    {/* ADMIN MENU END*/}
+
                 </>
               )}
             </ul>
           </div>
         </nav>
+        {/* USER IMAGE MENU START */}
         {isLogin ? (
           <>
             <div
@@ -143,6 +149,8 @@ function Navbar() {
             modalContent={modalContent}
           />
         )}
+        {/* USER IMAGE MENU END */}
+
       </header>
       <Outlet />
     </div>

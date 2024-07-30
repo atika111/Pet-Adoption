@@ -6,14 +6,14 @@ import "../Profile/profile.css";
 import { useUser } from "../../context/UserContext";
 import UploadImage from "../Auth/UploadImage";
 import Cookies from "js-cookie";
+import utilities from "../../utilitiesClient";
 
 function ProfileSettings() {
   const [profileData, setProfileData] = useState({});
 
-  const { state, dispatch, user, setUser } = useUser();
+  const {user, state, dispatch, setUser } = useUser();
 
-  const useR = JSON.parse(Cookies.get("user"));
-  console.log('useR: ', useR);
+  // const user = utilities.getCookie("user");
 
   const handleChangeData = (e) => {
     const { id, value } = e.target;
@@ -27,9 +27,6 @@ function ProfileSettings() {
 
   const handleFileChange = (image) => {
     console.log("image: ", image);
-    // console.log('e): ', e);
-    // const fileInput = e.target;
-    // const file = fileInput.files[0];
     setProfileData((prevData) => ({
       ...prevData,
       avatarImage: image,
@@ -52,22 +49,22 @@ function ProfileSettings() {
       dispatch({ type: "IS_LOADING", isLoading: true });
       dispatch({ type: "SET_ERROR" });
 
-      console.log(user.userId);
+      console.log('user._id: ', user._id);
       const res = await axios.put(
-        `${import.meta.env.VITE_SERVER_URL}/user/user/${useR.userId}`,
+        `${import.meta.env.VITE_SERVER_URL}/user/user/${user.userId}`,
         requestData
       );
       dispatch({ type: "SUCCESS_MESSAGE", successMessage: res.data.message });
+      console.log(res);
       if (res.data.updatedUser) {
-      const serializedUser = JSON.stringify(res.data.updatedUser);
-        Cookies.set("user", serializedUser);
+        console.log("res.data.updatedUser: ", res.data.updatedUser);
+        utilities.setCookie("user", res.data.updatedUser);
         setUser(res.data.updatedUser);
-        console.log("data: ", res.data.updatedUser);
       }
     } catch (error) {
       console.log("error: ", error);
       dispatch({ type: "SET_IS_ERROR", isError: true });
-      dispatch({ type: "SET_ERROR", error: error.response.data?.message });
+      dispatch({ type: "SET_ERROR", error: error?.response?.data?.message });
     } finally {
       dispatch({ type: "SET_LOADING", isLoading: false });
       console.log(state.successMessage);

@@ -26,6 +26,7 @@ const signup = async (newUser) => {
 };
 
 const login = async (email, password) => {
+  
   try {
     const data = await api.post(`${serverUrl}/user/login`, {
       email,

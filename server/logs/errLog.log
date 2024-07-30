@@ -40,3 +40,18 @@
 20240411	10:52:39	346c17c6-696b-4c73-8445-707827bbd0b4	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=COCOCOCC	http://localhost:5173
 20240411	10:57:53	addcc2b1-0462-4b4c-906a-ace1f96dba17	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=CCCCC&searchType=advance	http://localhost:5173
 20240411	11:33:31	e493ffac-4caf-4905-993b-1c7c92548c1a	Error: File size too large. Got 46473203. Maximum is 10485760.	POST	/pet/pet	http://localhost:5173
+20240412	14:23:25	f452cd31-8885-4f0f-9a67-5e6b8ef4c892	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/6578927b019e66b733d6f477	http://localhost:5173
+20240412	14:49:27	933e4f99-eeb8-4780-ad20-576bec722104	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/657892b0019e66b733d6f479	http://localhost:5173
+20240412	15:06:43	b1151c94-924f-40da-84f5-96905a2aa0f4	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/657892b0019e66b733d6f479	http://localhost:5173
+20240412	15:09:00	4fe41e9c-2eff-4f6a-a1fa-4cc7d5afc85d	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/657892b0019e66b733d6f479	http://localhost:5173
+20240414	11:06:25	ea721bbe-b073-4bf5-9a6d-1f34e517414c	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Pet"	PUT	/pet/pet/undefined	http://localhost:5173
+20240414	11:12:43	af4b9d3b-cec8-45ae-8f35-74c05f884d16	CastError: Cast to Boolean failed for value "" (type string) at path "hypoallergenic" because of "CastError"	PUT	/pet/pet/6578927b019e66b733d6f477	http://localhost:5173
+20240414	17:42:52	4b27f76d-5eb8-454e-a0be-cc9bbc32db30	ReferenceError: newList is not defined	PUT	/pet/pet/65787c15f3cfb954858c051e/save	http://localhost:5173
+20240414	18:16:14	1dcfe3fa-dcdd-40e3-9d7d-34fe63c4e29f	SyntaxError: Invalid regular expression: /Atika???/: Nothing to repeat	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=&name=Atika%3F%3F%3F	http://localhost:5173
+20240414	18:17:12	e0231377-065a-47ef-bd72-7fb328c62925	SyntaxError: Invalid regular expression: /Atika???/: Nothing to repeat	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=Atika%3F%3F%3F&searchType=advance	http://localhost:5173
+20240414	18:18:02	675d033e-18c8-4d47-9e2f-569c2d56688f	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchTerm=&height=&weight=&petType=&name=sldakncaldnclanlad&searchType=advance	http://localhost:5173
+20240414	18:27:58	18c3746e-25ff-4303-8f72-b8c9ffddce18	Error: Cannot set headers after they are sent to the client	GET	/pet/pets/?searchType=advance&searchTerm=&height=&weight=&petType=cut&name=kalfa	http://localhost:5173
+20240416	14:51:52	2ee8c65d-702e-4c18-89f9-228c6345004f	ReferenceError: newList is not defined	PUT	/pet/pet/65786fcbfcc94676ddbefa40/save	http://localhost:5173
+20240416	14:52:07	33a4b43d-015b-4bb0-b022-d57b0e95992d	ReferenceError: newList is not defined	PUT	/pet/pet/6617a125565a7c9b4fda8189/save	http://localhost:5173
+20240416	14:52:14	65fe1aa4-35bc-4398-bd84-ddc3fd49e37b	ReferenceError: newList is not defined	PUT	/pet/pet/65787c15f3cfb954858c051e/save	http://localhost:5173
+20240611	13:47:20	5432053e-ca67-4390-8a59-9e4dc3b22dce	MongoServerSelectionError: getaddrinfo ENOTFOUND ac-i5eu33h-shard-00-02.1ttsot9.mongodb.net	GET	/pet/pet/65787c15f3cfb954858c051e	http://localhost:5173

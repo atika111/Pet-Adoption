@@ -1,5 +1,4 @@
 import axios from "axios";
-import utilities from "../utilitiesClient";
 
 const serverUrl = import.meta.env.VITE_SERVER_URL;
 
@@ -11,6 +10,7 @@ const addPet = async (newPet) => {
   
   try {
     const {data} = await api.post(`${serverUrl}/pet/pet`,newPet)
+    console.log('data: ', data);
     return data
   } catch (error) {
     console.log('error: ', error);
@@ -85,8 +85,8 @@ const returnPet = async (userId, petId) => {
     console.log('data: ', data);
     return data
   } catch (error) {
-    throw new Error(error.response.data)
     console.log('error: ', error);
+    throw new Error(error.response.data)
     
   }
 };

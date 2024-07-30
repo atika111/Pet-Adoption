@@ -8,6 +8,7 @@ import UploadImage from "../../components/Auth/UploadImage";
 import { useEffect } from "react";
 import utilities from "../../utilitiesClient";
 import { actionTypes } from "../../Reducers/userReducer";
+import { usePet } from "../../context/PetContext";
 
 function AddPet() {
   const [newPet, setNewPet] = useState({
@@ -26,6 +27,7 @@ function AddPet() {
   });
 
   const { state, dispatch } = useUser();
+  const { fetchPetsData } = usePet();
 
   const handleFileChange = (image) => {
     console.log("image: ", image);
@@ -34,6 +36,13 @@ function AddPet() {
       ...prevData,
       picture: image,
     }));
+  };
+
+  const handleSuccess = (addedPet) => {
+    utilities.handleSuccessResponse({
+      ...{ success: addedPet?.message, dispatch, actionTypes },
+    });
+    fetchPetsData();
   };
 
   const handleOnSubmit = async (event) => {
@@ -52,9 +61,7 @@ function AddPet() {
 
       const addedPet = await addPet(formData);
 
-      utilities.handleSuccessResponse({
-        ...{ success: addedPet?.message, dispatch, actionTypes },
-      });
+      handleSuccess(addedPet);
     } catch (error) {
       utilities.handleErrorResponse({
         ...{ error: error?.message, dispatch, actionTypes },

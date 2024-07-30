@@ -3,7 +3,7 @@ import { getPetsByUserId } from "../../api/pet";
 import "./dashboard.css";
 import style from "../../utility.module.css";
 
-const UserModal = ({ users, userModal }) => {
+const UserModal = ({userModal }) => {
   const [modal, setModal] = useState({
     userInfo: {},
     pets: null,
@@ -14,7 +14,9 @@ const UserModal = ({ users, userModal }) => {
   const [error, setError] = useState('')
 
 
-  const handlePets = async () => {
+  const handlePets = async (e) => {
+    e.stopPropagation();
+
     try {
       setError('')
       const pets = await getPetsByUserId(modal.userInfo._id);
@@ -44,19 +46,16 @@ const UserModal = ({ users, userModal }) => {
         break;
     }
   };
-  useEffect(() => {
-    const data = users.users.find((userData) => userData._id === users.userId);
+  // useEffect(() => {
+  //   const data = users.users.find((userData) => userData._id === users.userId);
 
-    if (data) {
-      console.log("user: ", users);
-      console.log("data: ", data);
-      setModal((prevUser) => ({ ...prevUser, userInfo: data }));
-    }
-  }, [users]);
+  //   if (data) {
+  //     console.log("user: ", users);
+  //     console.log("data: ", data);
+  //     setModal((prevUser) => ({ ...prevUser, userInfo: data }));
+  //   }
+  // }, [users]);
 
-  useEffect(() => {
-    console.log(modal.pets);
-  }, [modal.pets]);
 
   return (
     <div className="modal-overlay">
@@ -74,7 +73,7 @@ const UserModal = ({ users, userModal }) => {
         <h3>{modal.userInfo.firstName}</h3>
         <p>{modal.userInfo.roles}</p>
         <p>{modal.userInfo.phoneNumber}</p>
-        <p onClick={handlePets}>{`Pets (${modal.userInfo.pets?.length})`}</p>
+        <p onClick={(e) => handlePets(e)}>{`Pets (${modal.userInfo.pets?.length})`}</p>
         <p>{error}</p>
       </div>
       <div className="owned-pets__scroll">

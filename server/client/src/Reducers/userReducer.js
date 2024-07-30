@@ -28,6 +28,7 @@ export const actionTypes = {
 };
 
 export const userReducer = (state, action) => {
+
   switch (action.type) {
     case "SET_FIELD":
       return {

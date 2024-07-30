@@ -7,8 +7,8 @@ import { useModal } from "../../context/ModalContext";
 import utilities from "../../utilitiesClient";
 import { actionTypes } from "../../Reducers/userReducer";
 
-function Signup({showSignup}) {
-  console.log('showSignup: ', showSignup);
+function Signup({ showSignup }) {
+  console.log("showSignup: ", showSignup);
   const { state, dispatch, defaultImage } = useUser();
 
   const navigate = useNavigate();
@@ -31,17 +31,16 @@ function Signup({showSignup}) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("e.target: ", e.target);
 
     utilities.handleSaveStateKeysForCleaningInput({
       ...{ target: e.target, actionTypes, dispatch },
     });
-    dispatch({ type: "SUCCESS_MESSAGE", successMessage: "" });
-    dispatch({ type: "SET_LOADING", isLoading: true });
 
     const newUser = handleAppendForm();
     try {
-      utilities.resetStatesAndStartNew({ ...{ dispatch, actionTypes } });
+      utilities.resetStatesAndStartNew({
+        ...{ isLoading: true, dispatch, actionTypes },
+      });
 
       const { data } = await signup(newUser);
 
@@ -53,21 +52,19 @@ function Signup({showSignup}) {
       utilities.handleErrorResponse({
         ...{ error: error?.message, dispatch, actionTypes },
       });
-    } finally {
-      dispatch({ type: "SET_LOADING", isLoading: false });
     }
   };
 
   useEffect(() => {
     return () => {
-      const isLoading = false;
-
-      utilities.resetStatesAndStartNew({
-        ...{ isLoading, dispatch, actionTypes },
-      });
-      utilities.handleCleanInput({
-        ...{ FormDataKeys: state.FormDataKeys, actionTypes, dispatch },
-      });
+      if (!state.isLoading) {
+        utilities.resetStatesAndStartNew({
+          ...{ dispatch, actionTypes },
+        });
+        utilities.handleCleanInput({
+          ...{ FormDataKeys: state.FormDataKeys, actionTypes, dispatch },
+        });
+      }
     };
   }, []);
   return (

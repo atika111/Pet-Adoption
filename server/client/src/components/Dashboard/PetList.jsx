@@ -8,9 +8,8 @@ function PetList({ pets }) {
   const [petId, setPetId] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const navigate = useNavigate();
-
   const handlePet = (petId) => {
+    console.log('in handlePet');
     setPetId(petId);
     setIsModalOpen(true);
   };
@@ -18,11 +17,11 @@ function PetList({ pets }) {
     <div>
       <h2>PetList</h2>
       <div className="petslist-container">
-        <div pet-card>
+        <div>
           <ul>
             {pets.length !== 0 &&
               pets.map((pet) => (
-                <li key={pet.id}>
+                <li key={pet._id}>
                   <div onClick={() => handlePet(pet._id)}>
                     <h3>{pet.name}</h3>
                     <p>{pet.type}</p>

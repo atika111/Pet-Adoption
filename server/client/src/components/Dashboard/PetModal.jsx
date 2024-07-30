@@ -4,40 +4,50 @@ import "./dashboard.css";
 import { editPet } from "../../api/pet";
 import { useUser } from "../../context/UserContext";
 import { usePet } from "../../context/PetContext";
+import utilities from "../../utilitiesClient";
+import { actionTypes } from "../../Reducers/userReducer";
 
-function PetModal({ data, updatePetsList }) {
+function PetModal({ data }) {
   const { isModalOpen, setIsModalOpen } = data;
 
-  const { fetchUsersData } = useUser();
+  const { state, dispatch } = useUser();
   const { fetchPetsData } = usePet();
 
   const [pet, setPet] = useState({});
   const [editNewPet, setEditNewPet] = useState({});
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [isLading, setIsLading] = useState(false);
 
   const onClose = () => {
-    setIsModalOpen(!isModalOpen);
+    console.log('onClose in petModla');
+    setIsModalOpen(false);
+      utilities.resetStatesAndStartNew({
+        isLoading: false,
+        dispatch,
+        actionTypes,
+      });
+      fetchPetsData();
   };
 
-  const handleUpDatePet = async () => {
+  const handleUpDatePet = async (e) => {
+    e.stopPropagation();
+
     try {
-      setError("");
-      setSuccessMessage("");
-      setIsLading(true);
+      utilities.resetStatesAndStartNew({
+        ...{ isLoading: false, dispatch, actionTypes },
+      });
+  
+
 
       const updatedPet = await editPet(editNewPet, pet._id);
-      console.log("updatedPet: ", updatedPet);
 
-      setSuccessMessage(updatedPet.data.message);
-      refreshList();
+      utilities.handleSuccessResponse({
+        ...{ success: updatedPet.data.message, dispatch, actionTypes },
+      });
     } catch (error) {
       console.log("Failed to update pet: ", error);
-      setError("Failed to update pet");
-    } finally {
-      setIsLading(false);
-    }
+      utilities.handleErrorResponse({
+        ...{ error: error?.message, dispatch, actionTypes },
+      });
+    } 
   };
 
   const handleInputChange = (e) => {
@@ -46,11 +56,6 @@ function PetModal({ data, updatePetsList }) {
       ...prevEditNewPet,
       [name]: value,
     }));
-  };
-
-  const refreshList = () => {
-    fetchPetsData();
-    fetchUsersData();
   };
 
   useEffect(() => {
@@ -67,7 +72,18 @@ function PetModal({ data, updatePetsList }) {
       dietaryRestrictions: pet?.dietaryRestrictions || "",
       breed: pet?.breed || "",
     });
-  }, [data]);
+  }, [data.petId]);
+
+  useEffect(() => {
+    return () => {
+      if (!isModalOpen) {
+        utilities.resetStatesAndStartNew({
+          dispatch,
+          actionTypes,
+        });
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -168,10 +184,14 @@ function PetModal({ data, updatePetsList }) {
                 name="breed"
               />
             </p>
-            <button onClick={handleUpDatePet}>
-              {isLading ? "Update..." : "Update"}
+            <button onClick={(e) => handleUpDatePet(e)}>
+              {state.isLoading ? "Update..." : "Update"}
             </button>
-            <p>{error || successMessage}</p>
+            {state.isError ? (
+              <p>{state.error}</p>
+            ) : (
+              <p>{state.successMessage}</p>
+            )}
           </div>
         </div>
       )}

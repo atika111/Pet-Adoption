@@ -13,9 +13,7 @@ function Login({ showSignup }) {
   const {
     setIsLogin,
     setUser,
-    setPets,
     setUserObj,
-    fetchUsersData,
     state,
     dispatch,
   } = useUser();
@@ -25,11 +23,7 @@ function Login({ showSignup }) {
   const navigate = useNavigate();
 
   const fetchCurrentUserData = async (data) => {
-    const pets = await getPetsByUserId(data.userId);
-    const users = await fetchUsersData();
     const userData = {
-      usersPets: pets,
-      users,
       user: data,
       token: data.token,
     };
@@ -37,15 +31,13 @@ function Login({ showSignup }) {
   };
 
   const setCurrentUserData = (userData) => {
-    const { pets, user } = userData;
+    const {user } = userData;
     setUserObj(utilities.convertArrayToObject(user));
     setUser(user);
-    setPets(pets);
     setIsLogin(true);
   };
 
   const setCookies = (userData) => {
-    console.log('userData: ', userData);
     for (const key in userData) {
       utilities.setCookie(key, userData[key]);
     }
@@ -58,7 +50,7 @@ function Login({ showSignup }) {
     });
 
     try {
-      utilities.resetStatesAndStartNew({ ...{ dispatch, actionTypes } });
+      utilities.resetStatesAndStartNew({ ...{isLoading: true, dispatch, actionTypes } });
       const { data } = await login(
         state.dynamicFields.email,
         state.dynamicFields.password
@@ -78,8 +70,6 @@ function Login({ showSignup }) {
       utilities.handleErrorResponse({
         ...{ error: error?.message, dispatch, actionTypes },
       });
-    } finally {
-      dispatch({ type: actionTypes.SET_LOADING, isLoading: false });
     }
   };
 
@@ -87,15 +77,16 @@ function Login({ showSignup }) {
     
     
       return () => {
-        const isLoading = false;
 
-        utilities.resetStatesAndStartNew({
-          ...{ isLoading, dispatch, actionTypes },
-        });
-        utilities.handleCleanInput({
-          ...{ FormDataKeys: state.FormDataKeys, actionTypes, dispatch },
-        });
-      };
+        if (!state.isLoading) {
+          utilities.resetStatesAndStartNew({
+            ...{dispatch, actionTypes },
+          });
+          utilities.handleCleanInput({
+            ...{ FormDataKeys: state.FormDataKeys, actionTypes, dispatch },
+          });
+        };
+        }
   }, []);
 
   return (

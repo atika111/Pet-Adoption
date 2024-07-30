@@ -19,14 +19,15 @@ function PetProvider({ children }) {
 
   const fetchPetsData = async () => {
     const pets = await getAllPets();
-    console.log("pets: ", pets);
+    console.log('pets: ', pets);
     setPets(pets);
   };
 
   const fetchPetsById = async (userId) => {
+    console.log('userId: ', userId);
     try {
       const data = await getPetsByUserId(userId);
-      console.log("data: ", data);
+      console.log('data: ', data);
       setPets(data);
     } catch (error) {
       console.log("error: ", error);

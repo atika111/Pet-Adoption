@@ -1,3 +1,5 @@
+import { initialState } from "./Reducers/userReducer";
+
 export const convertArrayToObject = (input) => {
   if (Array.isArray(input)) {
     const user = { ...input };
@@ -47,21 +49,26 @@ function getCookie(key) {
 const handleErrorResponse = ({ error, dispatch, actionTypes }) => {
   dispatch({ type: actionTypes.SET_ERROR, error: error || "Error" });
   dispatch({ type: actionTypes.SET_IS_ERROR, isError: true });
+  dispatch({
+    type: actionTypes.SET_LOADING,
+    isLoading: false,
+  });
 };
 
 const handleSuccessResponse = ({ success, dispatch, actionTypes }) => {
+  console.log("success: ", actionTypes);
   dispatch({
     type: actionTypes.SUCCESS_MESSAGE,
     successMessage: success || "Success",
   });
   dispatch({
     type: actionTypes.SET_LOADING,
-    successMessage: false,
+    isLoading: false,
   });
 };
 
 const resetStatesAndStartNew = ({ isLoading, actionTypes, dispatch }) => {
-  const loadingState = isLoading === undefined ? true : false;
+  const loadingState = isLoading ? isLoading : initialState.isLoading;
 
   dispatch({ type: actionTypes.RESET_ERROR });
   dispatch({ type: actionTypes.SET_IS_ERROR, isError: false });

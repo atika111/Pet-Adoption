@@ -123,6 +123,7 @@ const getUserById = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
   const userId = req.params.id;
   const updatedUserData = req.body;
+  console.log('updatedUserData: ', updatedUserData);
 
   if (!Object.keys(updatedUserData).length > 0) {
     return res.status(400).json({ message: "No data to be updated" });
@@ -135,6 +136,7 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 
     const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, { new: true });
+    console.log('updatedUser: ', updatedUser);
     res.status(200).json({ message: "User updated successfully",  updatedUser});
   } catch (error) {}
 });

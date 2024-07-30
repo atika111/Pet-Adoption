@@ -7,19 +7,13 @@ const { unwrapObjects } = require("../utilities");
 const addPet = async (req, res) => {
   try {
     // Extract pet data from the request body
-    const { name, age, breed } = req.body;
-
-    // if (!name || !age || !breed) {
-    //   return res.status(400).json({ message: 'All pet fields are required' });
-    // }
+    const data = req.body;
 
     const petImage = req.file ? req.file.path : null;
     console.log('petImage: ', petImage);
 
     const newPet = new Pet({
-      name,
-      age,
-      breed,
+      ...data,
       picture: petImage
     });
 
@@ -64,7 +58,8 @@ const getPets = asyncHandler(async (req, res) => {
   }
   // Parse query parameters
 
-  const { searchTerm, adoptionStatus, height, weight, type, name } = req.query;
+  const { searchTerm, adoptionStatus, height, weight, petType, name } = req.query;
+  console.log('req.query: ', req.query);
 
   // Build the Mongoose query
 
@@ -72,7 +67,7 @@ const getPets = asyncHandler(async (req, res) => {
   if (adoptionStatus) query.adoptionStatus = adoptionStatus;
   if (height) query.height = height;
   if (weight) query.weight = weight;
-  if (type) query.type = new RegExp(type, "i");
+  if (petType) query.type = new RegExp(petType, "i");
   if (name) query.name = new RegExp(name, "i");
   if (searchTerm) query.type = new RegExp(searchTerm, "i");
   console.log("query: ", query);

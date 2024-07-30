@@ -21,13 +21,15 @@ import { usePet } from "./context/PetContext";
 function App() {
   const { isLogin, setIsLogin, fetchCurrentUser } = useUser();
 
-  const { pets } = usePet();
+  const { pets ,fetchPetsById} = usePet();
+
 
   const user = utilities.getCookie("user")
   
   useEffect(() => {
     if (!isLogin && user) {
       fetchCurrentUser();
+      // fetchPetsById()
     }
   }, [isLogin, user, pets]);
   return (

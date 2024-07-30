@@ -38,6 +38,7 @@ const verifyPassword = async (req, res, next) => {
     console.log('verifyPassword: ');
   try {
     const { email, password } = req.body;
+    console.log('password: ', password);
     const user = await User.findOne({ email: email });
     if (!user) {
         console.log('user');
@@ -47,11 +48,11 @@ const verifyPassword = async (req, res, next) => {
         .send({ error: 'User not found. Please log in again.' });
     }
     
-    const isVerified =  bcrypt.compare(password, user.password);
+    const isVerified = await bcrypt.compare(password, user.password);
     if (!isVerified) {
       return res
-        .status(400)
-        .send({ error: 'Wrong password. Please try again.' });
+      .status(400)
+      .send({ error: 'Wrong password. Please try again.' });
     }
     req.body.userId = user._id;
     next();
